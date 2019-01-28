@@ -13,7 +13,11 @@ class App extends Component {
   render() {
 
     return (
-      <div>Hello World </div>
+      <div>
+        <p>Log in with Google</p>
+        <button id="authorize-button">Log In</button>
+        <button id="signout-button">Log Out</button>
+      </div>
     );
   }
 }
