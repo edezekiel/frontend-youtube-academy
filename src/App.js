@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { GoogleLogin } from 'react-google-login';
-import ReactDOM from 'react-dom'
-const URL = "http://localhost:3000/api/v1/users"
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
+const URL = "http://localhost:3000/api/v1/users"
 
 class App extends Component {
 
@@ -19,21 +18,7 @@ class App extends Component {
   onFailure = (error) => { alert(error) }
 
   responseGoogle = (response) => {
-      const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
-      const options = {
-          method: 'POST',
-          body: tokenBlob,
-          mode: 'cors',
-          cache: 'default'
-      };
-      fetch('http://localhost:3000/api/v1/auth/google', options).then(r => {
-          const token = r.headers.get('x-auth-token');
-          r.json().then(user => {
-              if (token) {
-                  this.setState({isAuthenticated: true, user, token})
-              }
-          });
-      })
+    console.log(response)
   };
 
   componentDidMount() {
@@ -45,12 +30,19 @@ class App extends Component {
   render() {
 
     return (
+      <div>
       <GoogleLogin
-        clientId="369548765069-c8i73drmbk5q2s47bumpkltp6ebjsljl.apps.googleusercontent.com"
+        clientId="369548765069-6sev6oe4a6ala4ihahsbhkugiissvkvb.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={this.responseGoogle}
-        onFailure={this.onFailure}
+        onFailure={this.responseGoogle}
         />
+      <GoogleLogout
+        button="Logout"
+        onLogoutSuccess={this.logout}
+      >
+      </GoogleLogout>
+      </div>
     );
   }
 }
