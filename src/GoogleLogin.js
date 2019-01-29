@@ -24,20 +24,22 @@ export default class GoogleLogin extends Component {
       scope: SCOPES
     }).then(function () {
       window.gapi.auth2.getAuthInstance().isSignedIn.get() ?
+      // TODO: use redux to update state at this point
+      // default should be false
         console.log("is already signed in")
         : console.log('is not signed in')
-      // .isSignedIn.listen(updateSigninStatus);
-      // updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      // authorizeButton.onclick = handleAuthClick;
-      // signoutButton.onclick = handleSignoutClick;
+
     });
+  }
+
+  handleAuthorize = () => {
+
   }
 
   render() {
     return(
       <div>
-        <button>Authorize</button>
-        <button>Sign Out</button>
+        {false ? "is logged in" : "is not logged in"}
       </div>
     )
   }
