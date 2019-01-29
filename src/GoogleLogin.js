@@ -18,7 +18,6 @@ class GoogleLogin extends Component {
   }
 
   initClient = () => {
-    console.log('init client')
     window.gapi.client.init({
       discoveryDocs: DISCOVERY_DOCS,
       clientId: CLIENT_ID,
@@ -27,6 +26,7 @@ class GoogleLogin extends Component {
       window.gapi.auth2.getAuthInstance().isSignedIn.get() ?
       // TODO: use redux to update state at this point
       // default should be false
+
         console.log("is already signed in")
         : console.log('is not signed in')
 
