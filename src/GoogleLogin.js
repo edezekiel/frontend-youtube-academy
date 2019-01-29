@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 const CLIENT_ID = '369548765069-mof01apa10i4vj53dk7g327j8oh91te7.apps.googleusercontent.com'
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
@@ -6,7 +7,7 @@ const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 const API_KEY = 'AIzaSyDadIIN_F6iRgWfuLEFxYQ3fn1Pj8Ai2EU'
 
-export default class GoogleLogin extends Component {
+class GoogleLogin extends Component {
 
   componentDidMount(){
     this.handleClientLoad()
@@ -44,3 +45,13 @@ export default class GoogleLogin extends Component {
     )
   }
 }
+
+let mapStateToProps = ({user}) => {
+  return {user}
+}
+
+// mapDispatchToProps usually generates callbacks for a particular component
+
+const ReduxGoogleLogin = connect(mapStateToProps, null)(GoogleLogin)
+
+export default ReduxGoogleLogin
