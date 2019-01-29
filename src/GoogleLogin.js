@@ -23,7 +23,9 @@ export default class GoogleLogin extends Component {
       clientId: CLIENT_ID,
       scope: SCOPES
     }).then(function () {
-      console.log(window.gapi.auth2.getAuthInstance())
+      window.gapi.auth2.getAuthInstance().isSignedIn.get() ?
+        console.log("is already signed in")
+        : console.log('is not signed in')
       // .isSignedIn.listen(updateSigninStatus);
       // updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       // authorizeButton.onclick = handleAuthClick;
