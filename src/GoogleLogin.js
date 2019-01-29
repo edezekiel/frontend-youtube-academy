@@ -52,6 +52,4 @@ let mapStateToProps = ({user}) => {
 
 // mapDispatchToProps usually generates callbacks for a particular component
 
-const ReduxGoogleLogin = connect(mapStateToProps, null)(GoogleLogin)
-
-export default ReduxGoogleLogin
+export default connect(mapStateToProps, null)(GoogleLogin)

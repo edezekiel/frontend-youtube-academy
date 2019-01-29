@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ReduxGoogleLogin from './GoogleLogin.js'
+import GoogleLogin from './GoogleLogin.js'
 
 const URL = "http://localhost:3000/api/v1/users"
 
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
 
     return (
-      <ReduxGoogleLogin />
+      <GoogleLogin />
     );
   }
 }
