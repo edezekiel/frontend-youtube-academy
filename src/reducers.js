@@ -4,7 +4,7 @@ const initialState = {
   user: null
 }
 
-function rootReducer = (state = initialState, action) {
+function rootReducer(state = initialState, action) {
   switch(action.type) {
     default:
       return state
