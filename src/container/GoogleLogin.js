@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import userReducer from '../reducers/userReducer'
+
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
 
@@ -28,11 +30,11 @@ class GoogleLogin extends Component {
 
         // if logged in, dispatch user: true to state
         // also need another gapi.auth2 call?
-        console.log("user is logged in", window.gapi.auth2.getAuthInstance())
+        console.log("user is logged in")
         :
 
         // else ... ?
-        console.log('user is not logged in', window.gapi.auth2.getAuthInstance())
+        console.log('Please Log In')
     });
   }
 
@@ -41,7 +43,12 @@ class GoogleLogin extends Component {
    *  Should this be a redux action?
    */
   handleAuthClick = (event) => {
-    window.gapi.auth2.getAuthInstance().signIn();
+    window.gapi.auth2.getAuthInstance().signIn()
+    .then(res => res.error ?
+      console.log(res) :
+      // if successful login, dispatch res to redux
+      console.log(res)
+    )
   }
 
   /**
@@ -55,7 +62,7 @@ class GoogleLogin extends Component {
   render() {
     return(
       <div>
-        {false ? "user is logged in" : "user is not logged in"}
+        {true ? <button onClick={this.handleAuthClick}>Log In With Google</button> : <button>Log Out</button>}
       </div>
     )
   }
