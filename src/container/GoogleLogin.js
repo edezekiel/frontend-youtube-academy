@@ -44,8 +44,8 @@ class GoogleLogin extends Component {
   }
 
   loginUser = (res) => {
-    this.props.dispatch(loginSuccess(res))
     localStorage.setItem('user', JSON.stringify(res))
+    this.props.dispatch(loginSuccess(res))
   }
 
   handleSignoutClick = (event) => {
@@ -62,7 +62,7 @@ class GoogleLogin extends Component {
   render() {
     return(
       <div>
-        {this.props.user ?
+        {this.props.user || localStorage.user ?
           <button
             onClick={this.handleSignoutClick}>Log Out</button> :
           <button

@@ -14,7 +14,7 @@ class Profile extends Component {
   render() {
     return (
       <div>Profile Page
-        <img src={this.props.user ? this.props.user.w3.Paa : null}/>
+        <img src={this.props.user ? JSON.parse(localStorage.getItem('user')).w3.Paa : null}/>
       </div>
     )
   }
