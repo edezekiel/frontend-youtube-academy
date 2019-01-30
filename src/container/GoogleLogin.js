@@ -17,7 +17,6 @@ class GoogleLogin extends Component {
     window.addEventListener('onbeforeunload', localStorage.clear())
   }
 
-
   handleClientLoad = () => {
     window.gapi.load('client:auth2', this.initClient)
   }
@@ -33,7 +32,6 @@ class GoogleLogin extends Component {
   handleAuthClick = (event) => {
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
-      // dispatch login failure
       console.log(res) :
       this.loginUser(res)
     )
