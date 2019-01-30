@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import userReducer from '../reducers/userReducer'
 import { loginSuccess } from '../actions/loginSuccess'
+import { logout } from '../actions/logout'
 
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
@@ -27,44 +28,37 @@ class GoogleLogin extends Component {
       scope: SCOPES
     }).then(function () {
       window.gapi.auth2.getAuthInstance().isSignedIn.get() ?
-      // TODO: use redux to update user state at this point
-
         // if logged in, dispatch user: true to state
-        // also need another gapi.auth2 call?
-        console.log("Welcome <user>")
-        :
-
-        // else ... ?
+        console.log("Welcome <user>") :
         console.log('Please Log In')
     });
   }
 
-    /**
-   *  Sign in the user upon button click.
-   *  Should this be a redux action?
-   */
   handleAuthClick = (event) => {
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
+      // dispatch login failure
       console.log(res) :
       // if successful login, dispatch user to redux
       this.props.dispatch(loginSuccess(res))
-      // console.log(res)
     )
   }
 
-  /**
-   *  Sign out the user upon button click.
-   *  Should this be a redux action?
-   */
   handleSignoutClick = (event) => {
-    window.gapi.auth2.getAuthInstance().signOut();
+    window.gapi.auth2.getAuthInstance().signOut()
+    .then(this.props.dispatch(logout()))
   }
 
   render() {
     return(
       <div>
-        {true ? <button onClick={this.handleAuthClick}>Log In With Google</button> : <button>Log Out</button>}
+        {this.props.user ?
+          <button
+            onClick={this.handleSignoutClick}>Log Out</button> :
+          <button
+            onClick={this.handleAuthClick}>Log In With Google
+          </button>
+        }
       </div>
     )
   }
