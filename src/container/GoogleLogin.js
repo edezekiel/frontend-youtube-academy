@@ -39,13 +39,24 @@ class GoogleLogin extends Component {
       // dispatch login failure
       console.log(res) :
       // if successful login, dispatch user to redux
-      this.props.dispatch(loginSuccess(res))
+      this.loginUser(res)
     )
+  }
+
+  loginUser = (res) => {
+    this.props.dispatch(loginSuccess(res))
+    localStorage.setItem('user', JSON.stringify(res))
   }
 
   handleSignoutClick = (event) => {
     window.gapi.auth2.getAuthInstance().signOut()
-    .then(this.props.dispatch(logout()))
+    .then(this.logoutUser()
+    )
+  }
+
+  logoutUser = () => {
+    this.props.dispatch(logout())
+    localStorage.clear()
   }
 
   render() {
