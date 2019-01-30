@@ -14,7 +14,9 @@ class GoogleLogin extends Component {
 
   componentDidMount(){
     this.handleClientLoad()
+    window.addEventListener('onbeforeunload', localStorage.clear())
   }
+
 
   handleClientLoad = () => {
     window.gapi.load('client:auth2', this.initClient)
@@ -25,12 +27,7 @@ class GoogleLogin extends Component {
       discoveryDocs: DISCOVERY_DOCS,
       clientId: CLIENT_ID,
       scope: SCOPES
-    }).then(function () {
-      window.gapi.auth2.getAuthInstance().isSignedIn.get() ?
-        // if logged in, dispatch user: true to state
-        console.log("Welcome <user>") :
-        console.log('Please Log In')
-    });
+    })
   }
 
   handleAuthClick = (event) => {
@@ -38,7 +35,6 @@ class GoogleLogin extends Component {
     .then(res => res.error ?
       // dispatch login failure
       console.log(res) :
-      // if successful login, dispatch user to redux
       this.loginUser(res)
     )
   }
