@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import userReducer from '../reducers/userReducer'
+import { loginSuccess } from '../actions/loginSuccess'
 
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
@@ -30,7 +31,7 @@ class GoogleLogin extends Component {
 
         // if logged in, dispatch user: true to state
         // also need another gapi.auth2 call?
-        console.log("user is logged in")
+        console.log("Welcome <user>")
         :
 
         // else ... ?
@@ -46,8 +47,9 @@ class GoogleLogin extends Component {
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
       console.log(res) :
-      // if successful login, dispatch res to redux
-      console.log(res)
+      // if successful login, dispatch user to redux
+      this.props.dispatch(loginSuccess(res))
+      // console.log(res)
     )
   }
 
