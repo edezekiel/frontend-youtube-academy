@@ -13,9 +13,15 @@ class Profile extends Component {
 
   render() {
     return (
-      <div>Profile Page</div>
+      <div>Profile Page
+        <img src={this.props.user ? this.props.user.w3.Paa : null}/>
+      </div>
     )
   }
 }
 
-export default Profile
+let mapStateToProps = ({user}) => {
+  return {user}
+}
+
+export default connect(mapStateToProps)(Profile)

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import userReducer from '../reducers/userReducer'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
