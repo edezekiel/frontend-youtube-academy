@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 
 import NavBar from './presentational/NavBar'
-import Login from './presentational/Login'
-import SearchContainer from './container/SearchContainer'
-import ProfileContainer from './container/ProfileContainer'
+import RootContainer from './container/RootContainer'
+import GoogleAuthContainer from './container/GoogleAuthContainer'
 
 const AppRouter = (props) => {
   return(
@@ -14,8 +13,8 @@ const AppRouter = (props) => {
     <Container>
       <NavBar />
       <Switch>
-        <Route exact path='/login'component={Login}/>
-        <Route exact path='/' component={SearchContainer} />
+        <Route exact path='/logout'component={GoogleAuthContainer}/>
+        <Route exact path='/'component={RootContainer}/>
       </Switch>
     </Container>
   )

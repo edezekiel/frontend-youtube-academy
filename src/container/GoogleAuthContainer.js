@@ -12,7 +12,7 @@ import CLIENT_ID from '../services/ClientId'
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
-class GoogleLoginContainer extends Component {
+class GoogleAuthContainer extends Component {
 
   componentDidMount(){
     this.handleClientLoad()
@@ -94,4 +94,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default connect(mapStateToProps, null)(GoogleLoginContainer)
+export default connect(mapStateToProps, null)(GoogleAuthContainer)

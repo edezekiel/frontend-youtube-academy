@@ -9,14 +9,13 @@ const NavBar = (props) =>  {
   return (
     <Menu>
       <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> Youtube Academy</Header></Link>
-      { props.user ?
-        <Link to="/login" className="item">
+      { props.user
+        ?
+        <Link to="/logout" className="item">
           <Header as='h3'>Logout</Header>
         </Link>
-      :
-      <Link to="/login" className='item'>
-        <Header as='h3'>Login</Header>
-      </Link>
+        :
+        null
     }
     </Menu>
   )
