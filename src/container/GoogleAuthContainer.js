@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
-import { Button } from 'semantic-ui-react'
+import { Button, Container } from 'semantic-ui-react'
 
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
@@ -77,15 +77,15 @@ class GoogleAuthContainer extends Component {
 
   render() {
     return(
-      <div>
-        {this.props.user || localStorage.user ?
+      <Container textAlign="center">
+        {this.props.user ?
           <Button
             onClick={this.handleSignoutClick}>Log Out</Button> :
           <Button
             onClick={this.handleAuthClick}>Log In With Google
           </Button>
         }
-      </div>
+      </Container>
     )
   }
 }

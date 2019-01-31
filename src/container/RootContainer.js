@@ -7,7 +7,7 @@ import GoogleAuthContainer from './GoogleAuthContainer'
 const RootContainer = (props) => {
   return (
     <div>
-    { props.user ? <Profile /> : <GoogleAuthContainer />}
+      { props.user ? <Profile /> : <GoogleAuthContainer />}
     </div>
   )
 }
