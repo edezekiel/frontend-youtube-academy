@@ -16,8 +16,5 @@ class App extends Component {
   }
 }
 
-let mapStateToProps = ({user}) => {
-  return {user}
-}
 
-export default connect(mapStateToProps)(App);
+export default App;

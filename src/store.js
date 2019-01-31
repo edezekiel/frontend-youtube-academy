@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import userReducer from './reducers/userReducer';
 
 const rootReducer = combineReducers({
-  user: userReducer
+  user: userReducer,
 })
 
 export default createStore(rootReducer,

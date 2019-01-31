@@ -9,8 +9,9 @@ const NavBar = (props) =>  {
   return (
     <Menu>
       <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> Youtube Academy</Header></Link>
+      <Link to="/search" className="item"><Header as='h3'>Search</Header></Link>
       { props.user ?
-        <Link to="/" className="item" onClick={props.logout}>
+        <Link to="/" className="item">
           <Header as='h3'>Logout</Header>
         </Link>
       :
