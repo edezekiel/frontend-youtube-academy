@@ -33,18 +33,14 @@ class GoogleLogin extends Component {
   handleAuthClick = (event) => {
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
+      // TODO: display error message to user if login fails
       console.log(res) :
       this.loginUser(res)
     )
   }
 
-  // ID number = user.El
-  // access token = user.Zi.access_token
-  // image = user.w3.Paa
-  // name = user.w3.ig
-
-  loginUser = (user) => {
-    fetch(`${RAILS_API}/login`, {
+  fetchUser = (user) => {
+    return fetch(`${RAILS_API}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -56,12 +52,13 @@ class GoogleLogin extends Component {
       })
     })
     .then(res => res.json())
+  }
+
+  loginUser = (user) => {
+    this.fetchUser(user)
     .then(railsUser => {
-      // console.log(railsUser)
-      // localStorage.setItem('user', true)
-      let googleID = railsUser.googleID
-      // console.log(railsUser.googleID)
-      this.props.dispatch(loginSuccess(googleID))
+      localStorage.setItem('user', railsUser.googleID)
+      this.props.dispatch(loginSuccess(railsUser.googleID))
       }
     )
   }
