@@ -12,11 +12,12 @@ class ProfileContainer extends Component {
   fetchUser = () => {
     fetch(`${RAILS_API}/users/${this.props.user}`)
     .then(res => res.json())
-    .then(user => console.log(user))
+    .then(console.log)
   }
 
   render(){
     return (
+
       <Profile />
     )
   }

@@ -4,13 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 
 import store from './store'
 import AppRouter from './AppRouter'
-import checkLoggedIn from './checkLoggedIn'
 
 class App extends Component {
-  componentDidMount(){
-    checkLoggedIn(store)
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -21,6 +16,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
