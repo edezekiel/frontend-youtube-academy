@@ -1,7 +1,7 @@
-export default function userReducer(state = localStorage.getItem('user'), action){
+export default function userReducer(state = null, action){
   switch(action.type) {
     case 'LOGIN':
-      return action.user
+      return action.googleID
     case 'LOGOUT':
       return null
     default:

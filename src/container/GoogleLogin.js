@@ -38,13 +38,32 @@ class GoogleLogin extends Component {
     )
   }
 
-  loginUser = (res) => {
-    localStorage.setItem('user', JSON.stringify(res))
-    this.props.dispatch(loginSuccess(res))
+  // ID number = user.El
+  // access token = user.Zi.access_token
+  // image = user.w3.Paa
+  // name = user.w3.ig
 
-    fetch(RAILS_API)
+  loginUser = (user) => {
+    fetch(`${RAILS_API}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: user.w3.ig,
+        googleID: user.El,
+        image: user.w3.Paa,
+      })
+    })
     .then(res => res.json())
-    .then(console.log)
+    .then(railsUser => {
+      // console.log(railsUser)
+      // localStorage.setItem('user', true)
+      let googleID = railsUser.googleID
+      // console.log(railsUser.googleID)
+      this.props.dispatch(loginSuccess(googleID))
+      }
+    )
   }
 
   handleSignoutClick = (event) => {

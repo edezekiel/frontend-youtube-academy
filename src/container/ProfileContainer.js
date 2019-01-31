@@ -6,12 +6,6 @@ import RAILS_API from '../services/Backend'
 
 class ProfileContainer extends Component {
 
-  componentDidMount() {
-    fetch(RAILS_API)
-    .then(res => res.json())
-    .then(console.log)
-  }
-
   render() {
     return (
       <div>{this.props.user ? <Profile /> : null}</div>
