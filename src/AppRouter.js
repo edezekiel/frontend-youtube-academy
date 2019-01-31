@@ -8,7 +8,6 @@ import GoogleAuthContainer from './container/GoogleAuthContainer'
 
 const AppRouter = (props) => {
   return(
-
     <Container>
       <NavBar />
       <Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
@@ -60,6 +61,7 @@ class GoogleAuthContainer extends Component {
     .then(railsUser => {
       localStorage.setItem('user', railsUser.googleID)
       this.props.dispatch(loginSuccess(railsUser.googleID))
+      this.props.history.push('/')
       }
     )
   }
@@ -94,4 +96,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default connect(mapStateToProps, null)(GoogleAuthContainer)
+export default withRouter(connect(mapStateToProps, null)(GoogleAuthContainer))

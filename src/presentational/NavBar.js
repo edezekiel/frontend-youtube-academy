@@ -11,12 +11,12 @@ const NavBar = (props) =>  {
       <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> Youtube Academy</Header></Link>
       { props.user
         ?
-        <Link to="/logout" className="item">
-          <Header as='h3'>Logout</Header>
-        </Link>
+          <Link to="/logout" className="item">
+            <Header as='h3'>Logout</Header>
+          </Link>
         :
-        null
-    }
+          null
+      }
     </Menu>
   )
 }
