@@ -15,7 +15,7 @@ class GoogleLogin extends Component {
 
   componentDidMount(){
     this.handleClientLoad()
-    window.addEventListener('onbeforeunload', localStorage.clear())
+    // window.addEventListener('onbeforeunload', localStorage.clear())
   }
 
   handleClientLoad = () => {
