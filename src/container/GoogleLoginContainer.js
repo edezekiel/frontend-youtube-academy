@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
+import { Button } from 'semantic-ui-react'
+
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
 // import API_KEY from '../services/Youtube'
@@ -11,7 +13,7 @@ import CLIENT_ID from '../services/ClientId'
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
-class GoogleLogin extends Component {
+class GoogleLoginContainer extends Component {
 
   componentDidMount(){
     this.handleClientLoad()
@@ -78,11 +80,11 @@ class GoogleLogin extends Component {
     return(
       <div>
         {this.props.user || localStorage.user ?
-          <button
-            onClick={this.handleSignoutClick}>Log Out</button> :
-          <button
+          <Button
+            onClick={this.handleSignoutClick}>Log Out</Button> :
+          <Button
             onClick={this.handleAuthClick}>Log In With Google
-          </button>
+          </Button>
         }
       </div>
     )
@@ -93,4 +95,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default connect(mapStateToProps, null)(GoogleLogin)
+export default connect(mapStateToProps, null)(GoogleLoginContainer)

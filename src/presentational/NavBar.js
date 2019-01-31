@@ -14,7 +14,7 @@ const NavBar = (props) =>  {
           <Header as='h3'>Logout</Header>
         </Link>
       :
-      <Link to="/" className='item'>
+      <Link to="/login" className='item'>
         <Header as='h3'>Login</Header>
       </Link>
     }

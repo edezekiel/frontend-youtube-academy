@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import checkLoggedIn from './checkLoggedIn'
-import App from './App';
+import App from './App'
 
 class Root extends Component {
   componentDidMount(){
@@ -15,7 +14,7 @@ class Root extends Component {
     return(
       <Provider store={this.props.store}>
         <BrowserRouter>
-          <Route path='/' component={App} />
+          <App />
         </BrowserRouter>
       </Provider>
     )
