@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react'
 
 import NavBar from './presentational/NavBar'
 import Login from './presentational/Login'
-import Search from './presentational/Search'
+import SearchContainer from './container/SearchContainer'
 import ProfileContainer from './container/ProfileContainer'
 
 const AppRouter = (props) => {
@@ -15,8 +15,7 @@ const AppRouter = (props) => {
       <NavBar />
       <Switch>
         <Route exact path='/login'component={Login}/>
-        <Route exact path='/search'component={Search}/>
-        <Route exact path='/' component={ProfileContainer} />
+        <Route exact path='/' component={SearchContainer} />
       </Switch>
     </Container>
   )
