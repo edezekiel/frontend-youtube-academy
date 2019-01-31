@@ -10,7 +10,7 @@ const NavBar = (props) =>  {
     <Menu>
       <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> Youtube Academy</Header></Link>
       { props.user ?
-        <Link to="/" className="item"vonClick={props.logout}>
+        <Link to="/" className="item" onClick={props.logout}>
           <Header as='h3'>Logout</Header>
         </Link>
       :
@@ -22,4 +22,8 @@ const NavBar = (props) =>  {
   )
 }
 
-export default connect()(NavBar)
+let mapStateToProps = ({user}) => {
+  return {user}
+}
+
+export default connect(mapStateToProps)(NavBar)
