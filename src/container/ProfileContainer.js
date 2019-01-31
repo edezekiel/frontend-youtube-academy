@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Profile from '../presentational/Profile'
 import RAILS_API from '../services/Backend'
 
-class Profile extends Component {
+class ProfileContainer extends Component {
 
   componentDidMount() {
     fetch(RAILS_API)
@@ -13,9 +14,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <div>Profile Page
-        <img src={this.props.user ? JSON.parse(localStorage.getItem('user')).w3.Paa : null}/>
-      </div>
+      <div>{this.props.user ? <Profile /> : null}</div>
     )
   }
 }
@@ -24,4 +23,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps)(ProfileContainer)

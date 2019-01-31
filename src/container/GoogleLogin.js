@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
+import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
 
@@ -40,6 +41,10 @@ class GoogleLogin extends Component {
   loginUser = (res) => {
     localStorage.setItem('user', JSON.stringify(res))
     this.props.dispatch(loginSuccess(res))
+    
+    fetch(RAILS_API)
+    .then(res => res.json())
+    .then(console.log)
   }
 
   handleSignoutClick = (event) => {
