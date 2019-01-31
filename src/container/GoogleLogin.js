@@ -6,7 +6,7 @@ import { logout } from '../actions/logout'
 
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
-import API_KEY from '../services/Youtube'
+// import API_KEY from '../services/Youtube'
 
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
@@ -41,7 +41,7 @@ class GoogleLogin extends Component {
   loginUser = (res) => {
     localStorage.setItem('user', JSON.stringify(res))
     this.props.dispatch(loginSuccess(res))
-    
+
     fetch(RAILS_API)
     .then(res => res.json())
     .then(console.log)
