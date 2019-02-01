@@ -14,7 +14,10 @@ import API_KEY from '../services/Youtube'
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
+
 class GoogleAuthContainer extends Component {
+
+  //---------------------INIT_CLIENT---------------------//
 
   componentDidMount(){
     this.handleClientLoad()
@@ -34,12 +37,42 @@ class GoogleAuthContainer extends Component {
     })
   }
 
-  handleAuthClick = (event) => {
+  //---------------------LOGIN---------------------//
+
+  handleLoginClick = (event) => {
+    // sign user in to Google
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
       // TODO: display error message to user if login fails
       console.log(res) :
+      // if sign in successful (no error returned), ensure that
+      // user has properly granted scope access
+      this.checkUserAuth(res)
+    )
+  }
+
+  checkUserAuth = (res) => {
+    // ensure that signed in user has access to youtube scopes (defined above)
+    let isAuthorized = window.gapi.auth2.getAuthInstance().currentUser.get().hasGrantedScopes(SCOPES)
+    // if user is signed in and authorized, log user in to my app
+    if (isAuthorized) {
       this.loginUser(res)
+    } else {
+      console.log('not authorized')
+    }
+  }
+
+  loginUser = (user) => {
+    // this will find_or_create user based on googleID
+    // TODO - encode the googleID
+    this.fetchUser(user)
+    .then(railsUser => {
+      // save response from rails in localStorage
+      localStorage.setItem('user', JSON.stringify(user))
+      // dispatch response to Redux store
+      this.props.dispatch(loginSuccess(user))
+      this.props.history.push('/')
+      }
     )
   }
 
@@ -58,35 +91,29 @@ class GoogleAuthContainer extends Component {
     .then(res => res.json())
   }
 
-  loginUser = (user) => {
-    this.fetchUser(user)
-    .then(railsUser => {
-      localStorage.setItem('user', JSON.stringify(user))
-      this.props.dispatch(loginSuccess(user))
-      this.props.history.push('/')
-      }
-    )
-  }
-
-  handleSignoutClick = (event) => {
-    window.gapi.auth2.getAuthInstance().signOut()
-    .then(this.logoutUser()
-    )
-  }
+  //---------------------LOGOUT---------------------//
 
   logoutUser = () => {
     this.props.dispatch(logout())
     localStorage.clear()
   }
 
+  handleLogoutClick = (event) => {
+    window.gapi.auth2.getAuthInstance().signOut()
+    .then(this.logoutUser()
+    )
+  }
+
+  //---------------------BUTTONS---------------------//
+
   render() {
     return(
       <Container textAlign="center">
         {this.props.user ?
           <Button
-            onClick={this.handleSignoutClick}>Log Out</Button> :
+            onClick={this.handleLogoutClick}>Log Out</Button> :
           <Button
-            onClick={this.handleAuthClick}>Log In With Google
+            onClick={this.handleLoginClick}>Log In With Google
           </Button>
         }
       </Container>

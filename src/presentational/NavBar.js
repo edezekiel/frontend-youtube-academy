@@ -17,6 +17,14 @@ const NavBar = (props) =>  {
         :
           null
       }
+      { props.user
+        ?
+          <Link to="/search" className="item">
+            <Header as='h3'>Search</Header>
+          </Link>
+        :
+          null
+      }
     </Menu>
   )
 }

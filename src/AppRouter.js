@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react'
 import NavBar from './presentational/NavBar'
 import RootContainer from './container/RootContainer'
 import GoogleAuthContainer from './container/GoogleAuthContainer'
+import SearchContainer from './container/SearchContainer'
 
 const AppRouter = (props) => {
   return(
@@ -12,6 +13,7 @@ const AppRouter = (props) => {
       <NavBar />
       <Switch>
         <Route exact path='/logout'component={GoogleAuthContainer}/>
+        <Route exact path='/search'component={SearchContainer}/>
         <Route exact path='/'component={RootContainer}/>
       </Switch>
     </Container>
