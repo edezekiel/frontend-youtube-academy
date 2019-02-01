@@ -137,7 +137,6 @@ class SearchContainer extends Component {
         {this.props.search.map(result =>
           <YouTubePlayer
             url={`https://www.youtube.com/watch?v=${result}`}
-            playing
             controls
           />
         )}
