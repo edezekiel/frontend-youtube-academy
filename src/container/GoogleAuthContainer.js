@@ -59,11 +59,10 @@ class GoogleAuthContainer extends Component {
   }
 
   loginUser = (user) => {
-    console.log(user)
     this.fetchUser(user)
     .then(railsUser => {
-      localStorage.setItem('user', railsUser.googleID)
-      this.props.dispatch(loginSuccess(railsUser.googleID))
+      localStorage.setItem('user', JSON.stringify(user))
+      this.props.dispatch(loginSuccess(user))
       this.props.history.push('/')
       }
     )

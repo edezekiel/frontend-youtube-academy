@@ -2,10 +2,13 @@ function checkUser() {
   return localStorage.user || null;
 }
 
-export default function userReducer(state = checkUser(), action){
+// had to stringify user object to save it in local localStorage
+// thus, have to parse it to return POJO in initialState
+
+export default function userReducer(state = JSON.parse(checkUser()), action){
   switch(action.type) {
     case 'LOGIN':
-      return action.googleID
+      return action.user
     case 'LOGOUT':
       return null
     default:
