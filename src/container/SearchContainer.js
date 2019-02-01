@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { YouTube } from 'react-youtube'
+
 import { Button } from 'semantic-ui-react'
 
 import CLIENT_ID from '../services/ClientId'
@@ -98,7 +100,7 @@ class SearchContainer extends Component {
   }
 
   executeRequest = (request) => {
-    request.execute(response => console.log(response));
+    request.execute(response => this.renderVideos(response));
   }
 
   //---------------------SEARCH_YOUTUBE---------------------//
@@ -114,6 +116,10 @@ class SearchContainer extends Component {
        'q': 'redux',
        'type': ''}
     );
+  }
+
+  renderVideos = (response) => {
+    response.items.map(video => console.log(video.id.videoId))
   }
 
   //---------------------SEARCH_FORM---------------------//
