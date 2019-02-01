@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
+import GoogleAuth from '../presentational/GoogleAuth'
+
 import { Button, Container } from 'semantic-ui-react'
 
 import RAILS_API from '../services/Backend'
@@ -104,16 +106,10 @@ class GoogleAuthContainer extends Component {
   //---------------------BUTTONS---------------------//
 
   render() {
-    return(
-      <Container textAlign="center">
-        {this.props.user ?
-          <Button
-            onClick={this.handleLogoutClick}>Log Out</Button> :
-          <Button
-            onClick={this.handleLoginClick}>Log In With Google
-          </Button>
-        }
-      </Container>
+    return (
+      <GoogleAuth
+        authHandler={this.props.user? this.handleLogoutClick : this.handleLoginClick }
+        message={this.props.user? "Log Out" : "Login With Google" }/>
     )
   }
 }

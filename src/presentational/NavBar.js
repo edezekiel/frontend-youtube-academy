@@ -8,7 +8,7 @@ import logo from '../assets/favicon.png'
 const NavBar = (props) =>  {
   return (
     <Menu>
-      <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> Youtube Academy</Header></Link>
+      <Link to="/" className="item"><Header as='h3'><Image src={logo} alt="logo"/> YouTube Academy</Header></Link>
       { props.user
         ?
           <Link to="/logout" className="item">
