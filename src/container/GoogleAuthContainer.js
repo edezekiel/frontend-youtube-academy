@@ -9,6 +9,7 @@ import { Button, Container } from 'semantic-ui-react'
 
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
+import API_KEY from '../services/Youtube'
 
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
@@ -26,6 +27,7 @@ class GoogleAuthContainer extends Component {
 
   initClient = () => {
     window.gapi.client.init({
+      apiKey: API_KEY,
       discoveryDocs: DISCOVERY_DOCS,
       clientId: CLIENT_ID,
       scope: SCOPES
@@ -57,6 +59,7 @@ class GoogleAuthContainer extends Component {
   }
 
   loginUser = (user) => {
+    console.log(user)
     this.fetchUser(user)
     .then(railsUser => {
       localStorage.setItem('user', railsUser.googleID)
