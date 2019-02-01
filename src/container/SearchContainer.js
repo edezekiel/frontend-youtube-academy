@@ -62,7 +62,7 @@ class SearchContainer extends Component {
     let normalizedProps = properties;
     for (let p in properties) {
       let value = properties[p];
-      if (p && p.substr(-2, 2) == '[]') {
+      if (p && p.substr(-2, 2) === '[]') {
         let adjustedName = p.replace('[]', '');
         if (value) {
           normalizedProps[adjustedName] = value.split(',');
@@ -77,7 +77,7 @@ class SearchContainer extends Component {
         let ref = resource;
         for (let pa = 0; pa < propArray.length; pa++) {
           let key = propArray[pa];
-          if (pa == propArray.length - 1) {
+          if (pa === propArray.length - 1) {
             ref[key] = normalizedProps[p];
           } else {
             ref = ref[key] = ref[key] || {};
@@ -90,7 +90,7 @@ class SearchContainer extends Component {
 
   removeEmptyParams = (params) => {
     for (let p in params) {
-      if (!params[p] || params[p] == 'undefined') {
+      if (!params[p] || params[p] === 'undefined') {
         delete params[p];
       }
     }
@@ -106,13 +106,17 @@ class SearchContainer extends Component {
   search = () => {
     // let request = window.gapi.client.youtube.channels.list({'part': 'snippet', 'mine': 'true'});
     // request.execute(res => console.log(res))
-    this.buildApiRequest('GET',
-                '/youtube/v3/search',
-                {'maxResults': '25',
-                 'part': 'snippet',
-                 'q': 'surfing',
-                 'type': ''});
+    this.buildApiRequest(
+      'GET',
+      '/youtube/v3/search',
+      {'maxResults': '25',
+       'part': 'snippet',
+       'q': 'redux',
+       'type': ''}
+    );
   }
+
+  //---------------------SEARCH_FORM---------------------//
 
   render() {
     return(
