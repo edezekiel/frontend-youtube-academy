@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { YouTube } from 'react-youtube'
+import { Button, Container } from 'semantic-ui-react'
+import YouTubePlayer from 'react-player/lib/players/YouTube'
 
-import { Button } from 'semantic-ui-react'
+import { addSearchResult } from '../actions/addSearchResult'
+import { clearSearchResults } from '../actions/clearSearchResults'
 
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
@@ -119,20 +121,33 @@ class SearchContainer extends Component {
   }
 
   renderVideos = (response) => {
-    response.items.map(video => console.log(video.id.videoId))
+    response.items.map(video => {
+      this.props.dispatch(clearSearchResults())
+      this.props.dispatch(addSearchResult(video.id.videoId))
+    })
   }
 
   //---------------------SEARCH_FORM---------------------//
 
   render() {
+    console.log(this.props.search)
     return(
-      <Button onClick={() => this.search()}>Search Youtube</Button>
+      <Container>
+        <Button onClick={() => this.search()}>Search Youtube</Button>
+        {this.props.search.map(result =>
+          <YouTubePlayer
+            url={`https://www.youtube.com/watch?v=${result}`}
+            playing
+            controls
+          />
+        )}
+      </Container>
     )
   }
 }
 
-let mapStateToProps = ({user}) => {
-  return {user}
+let mapStateToProps = ({user, search}) => {
+  return {user, search}
 }
 
 export default connect(mapStateToProps)(SearchContainer)
