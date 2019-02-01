@@ -127,7 +127,7 @@ class SearchContainer extends Component {
   renderVideos = (response) => {
     response.items.map(video => {
       this.props.dispatch(clearSearchResults())
-      this.props.dispatch(addSearchResult(video.id.videoId))
+      if (video.id.videoId) {this.props.dispatch(addSearchResult(video.id.videoId))}
     })
   }
 

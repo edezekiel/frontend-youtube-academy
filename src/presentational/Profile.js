@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Segment, Container, Header, Card, Image } from 'semantic-ui-react'
+import { Segment, Header, Image } from 'semantic-ui-react'
 
 const Profile = (props) => {
 

@@ -8,7 +8,7 @@ const SearchForm = (props) => {
       <Form onSubmit={(e) => props.search(e)}>
         <Form.Field>
           <label>Search YouTube</label>
-          <input placeholder='Redux' name="searchTerm"/>
+          <input placeholder='e.g., Redux tutorials' name="searchTerm"/>
         </Form.Field>
           <Button primary type="submit">Search Youtube</Button>
       </Form>
