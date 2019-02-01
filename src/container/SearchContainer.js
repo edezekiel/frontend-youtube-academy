@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Container, Form, Card, Segment } from 'semantic-ui-react'
-import YouTubePlayer from 'react-player/lib/players/YouTube'
+import { Container } from 'semantic-ui-react'
+
+import SearchForm from '../presentational/SearchForm'
+import SearchResult from '../presentational/SearchResult'
 
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
@@ -14,10 +16,8 @@ const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class SearchContainer extends Component {
 
-  // GoogleAuthContainer already signed user in
-  // e.g., there is already a current user
-  // BUT, still need to initClient on this page
-  // otherwise, window.gapi will return undefined
+  // GoogleAuthContainer already signed user (current user)
+  // but,still need to initClient so that window.gapi is defined
 
   //---------------------INIT_CLIENT---------------------//
 
@@ -134,32 +134,16 @@ class SearchContainer extends Component {
   //---------------------SEARCH_FORM---------------------//
 
   render() {
-    return(
-      <Container>
-        <Segment>
-          <Form onSubmit={(e) => this.search(e)}>
-            <Form.Field>
-              <label>Search YouTube</label>
-              <input placeholder='Redux' name="searchTerm"/>
-            </Form.Field>
-              <Button primary type="submit">Search Youtube</Button>
-          </Form>
-        </Segment>
-        <Segment>
-          {this.props.search.map((result, i) => {
-            return (
-              <YouTubePlayer
-                width="400px"
-                url={`https://www.youtube.com/watch?v=${result}`}
-                controls
-              />
-            )
-          })}
-        </Segment>
-      </Container>
-    )
+      return(
+        <Container>
+          <SearchForm search={this.search} />
+            {this.props.search.map((result, i) =>
+              <SearchResult result={result} key={i}/>
+            )}
+        </Container>
+      )
+    }
   }
-}
 
 let mapStateToProps = ({user, search}) => {
   return {user, search}
