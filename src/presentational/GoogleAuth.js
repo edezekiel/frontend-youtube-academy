@@ -1,13 +1,26 @@
 import React from 'react'
 
 import { Segment, Container, Button, Header, Image, Card } from 'semantic-ui-react'
+import googleLogo from '../assets/google.png'
 
 const GoogleAuth = (props) => {
 
   return(
-    <Segment>
+    <Segment basic>
       <Container textAlign="center">
-        <Button onClick={props.authHandler}>{props.message}</Button>
+        <Card centered>
+          <Image src={googleLogo} />
+          <Card.Content>
+            <Button
+              onClick={props.authHandler}
+              as='a'
+              inverted
+              color='red'
+              >
+              {props.message}
+            </Button>
+          </Card.Content>
+        </Card>
       </Container>
     </Segment>
   )
