@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Container } from 'semantic-ui-react'
+import { Button, Container, Form, Card, Segment } from 'semantic-ui-react'
 import YouTubePlayer from 'react-player/lib/players/YouTube'
 
 import { addSearchResult } from '../actions/addSearchResult'
@@ -98,24 +98,28 @@ class SearchContainer extends Component {
         delete params[p];
       }
     }
+    console.log(params)
     return params;
   }
 
   executeRequest = (request) => {
     request.execute(response => this.renderVideos(response));
+    // request.execute(response => console.log(response));
   }
 
   //---------------------SEARCH_YOUTUBE---------------------//
 
-  search = () => {
+  search = (event) => {
     // let request = window.gapi.client.youtube.channels.list({'part': 'snippet', 'mine': 'true'});
     // request.execute(res => console.log(res))
+    event.preventDefault()
+    let searchTerm = event.target.searchTerm.value
     this.buildApiRequest(
       'GET',
       '/youtube/v3/search',
-      {'maxResults': '25',
+      {'maxResults': '10',
        'part': 'snippet',
-       'q': 'redux',
+       'q': `${searchTerm}`,
        'type': ''}
     );
   }
@@ -130,16 +134,28 @@ class SearchContainer extends Component {
   //---------------------SEARCH_FORM---------------------//
 
   render() {
-    console.log(this.props.search)
     return(
       <Container>
-        <Button onClick={() => this.search()}>Search Youtube</Button>
-        {this.props.search.map(result =>
-          <YouTubePlayer
-            url={`https://www.youtube.com/watch?v=${result}`}
-            controls
-          />
-        )}
+        <Segment>
+          <Form onSubmit={(e) => this.search(e)}>
+            <Form.Field>
+              <label>Search YouTube</label>
+              <input placeholder='Redux' name="searchTerm"/>
+            </Form.Field>
+              <Button primary type="submit">Search Youtube</Button>
+          </Form>
+        </Segment>
+        <Segment>
+          {this.props.search.map((result, i) => {
+            return (
+              <YouTubePlayer
+                width="400px"
+                url={`https://www.youtube.com/watch?v=${result}`}
+                controls
+              />
+            )
+          })}
+        </Segment>
       </Container>
     )
   }
