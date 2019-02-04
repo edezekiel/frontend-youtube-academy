@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Container } from 'semantic-ui-react'
 
+import { addUserOutline } from '../actions/addUserOutline'
 import Profile from '../presentational/Profile'
 import IndexOutlines from '../presentational/IndexOutlines'
 import RAILS_API from '../services/Backend'
@@ -24,7 +25,13 @@ class ProfileContainer extends Component {
       })
     })
     .then(res => res.json())
-    .then(console.log)
+    .then(response => this.updateOutlineState(response))
+  }
+
+  updateOutlineState = (response) => {
+    response.map(outline => {
+      this.props.dispatch(addUserOutline(outline))
+    })
   }
 
   render(){
