@@ -122,8 +122,8 @@ class SearchContainer extends Component {
   }
 
   renderVideos = (response) => {
+    this.props.dispatch(clearSearchResults())
     response.items.map(video => {
-      this.props.dispatch(clearSearchResults())
       if (video.id.videoId) {this.props.dispatch(addSearchResult(video.id.videoId))}
     })
   }
@@ -161,13 +161,13 @@ class SearchContainer extends Component {
       return(
         <Container>
           <SearchForm search={this.search} />
-            {this.props.search.map((result, i) =>
-              <SearchResult
-                result={result}
-                key={i}
-                submitOutline={this.submitOutline}
-              />
-            )}
+          {this.props.search.map((result, i) =>
+            <SearchResult
+              result={result}
+              key={i}
+              submitOutline={this.submitOutline}
+            />
+          )}
         </Container>
       )
     }
@@ -176,5 +176,9 @@ class SearchContainer extends Component {
 let mapStateToProps = ({user, search}) => {
   return {user, search}
 }
+
+// let mapDispatchToProps = dispatch => {
+//   return {user, search}
+// }
 
 export default connect(mapStateToProps)(SearchContainer)
