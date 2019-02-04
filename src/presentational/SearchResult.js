@@ -17,7 +17,7 @@ const SearchResult = (props) => {
         </Grid.Column>
 
         <Grid.Column>
-          <Form>
+          <Form onSubmit={(e) => props.submitOutline(e)}>
             <Form.Field
               label="Your Notes"
               control="textarea"
@@ -25,7 +25,12 @@ const SearchResult = (props) => {
               name='videoNotes'
               placeholder="Take notes on your favorite videos."
             />
-            <Button>Record Notes</Button>
+            <Button
+              inverted
+              color='red'
+              type="submit">
+              Save Notes
+            </Button>
           </Form>
         </Grid.Column>
       </Grid>

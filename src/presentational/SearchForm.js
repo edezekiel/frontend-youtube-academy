@@ -10,12 +10,12 @@ const SearchForm = (props) => {
           <label>Search YouTube</label>
           <input placeholder='e.g., Redux tutorials' name="searchTerm"/>
         </Form.Field>
-          <Button
-            inverted
-            color='red'
-            type="submit">
-            Search Youtube
-          </Button>
+        <Button
+          inverted
+          color='red'
+          type="submit">
+          Search Youtube
+        </Button>
       </Form>
     </Segment>
   )

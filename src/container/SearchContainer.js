@@ -98,20 +98,16 @@ class SearchContainer extends Component {
         delete params[p];
       }
     }
-    console.log(params)
     return params;
   }
 
   executeRequest = (request) => {
     request.execute(response => this.renderVideos(response));
-    // request.execute(response => console.log(response));
   }
 
   //---------------------SEARCH_YOUTUBE---------------------//
 
   search = (event) => {
-    // let request = window.gapi.client.youtube.channels.list({'part': 'snippet', 'mine': 'true'});
-    // request.execute(res => console.log(res))
     event.preventDefault()
     let searchTerm = event.target.searchTerm.value
     this.buildApiRequest(
@@ -131,6 +127,28 @@ class SearchContainer extends Component {
     })
   }
 
+  //---------------------SAVE_OUTLINE---------------------//
+
+  // fetchUser = (outline) => {
+  //   return fetch(`${RAILS_API}/outlines`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       video: ,
+  //       notes: ,
+  //     })
+  //   })
+  //   .then(res => res.json())
+  // }
+
+  submitOutline = (event) => {
+    event.preventDefault()
+      let videoNotes = event.target.videoNotes.value
+      console.log(videoNotes)
+  }
+
   //---------------------SEARCH_FORM---------------------//
 
   render() {
@@ -138,7 +156,11 @@ class SearchContainer extends Component {
         <Container>
           <SearchForm search={this.search} />
             {this.props.search.map((result, i) =>
-              <SearchResult result={result} key={i}/>
+              <SearchResult
+                result={result}
+                key={i}
+                submitOutline={this.submitOutline}
+              />
             )}
         </Container>
       )
