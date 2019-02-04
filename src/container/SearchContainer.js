@@ -8,35 +8,17 @@ import SearchResult from '../presentational/SearchResult'
 
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
+import handleClientLoad from '../utils/handleClientLoad'
 
 import RAILS_API from '../services/Backend'
-import CLIENT_ID from '../services/ClientId'
-import API_KEY from '../services/Youtube'
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
-const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class SearchContainer extends Component {
 
   // GoogleAuthContainer already signed user (current user)
   // but,still need to initClient so that window.gapi is defined
 
-  //---------------------INIT_CLIENT---------------------//
-
   componentDidMount(){
-    this.handleClientLoad()
-  }
-
-  handleClientLoad = () => {
-    window.gapi.load('client:auth2', this.initClient)
-  }
-
-  initClient = () => {
-    window.gapi.client.init({
-      apiKey: API_KEY,
-      discoveryDocs: DISCOVERY_DOCS,
-      clientId: CLIENT_ID,
-      scope: SCOPES
-    })
+    handleClientLoad()
   }
 
   //---------------------BOILERPLATE---------------------//

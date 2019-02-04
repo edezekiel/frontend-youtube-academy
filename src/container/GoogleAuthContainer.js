@@ -4,36 +4,15 @@ import { withRouter } from 'react-router-dom'
 
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
-
-import { initClient } from '../utils/initClient'
-
+import fetchUser from '../utils/fetchUser'
+import handleClientLoad from '../utils/handleClientLoad'
 import GoogleAuth from '../presentational/GoogleAuth'
-
-import RAILS_API from '../services/Backend'
-import CLIENT_ID from '../services/ClientId'
-import API_KEY from '../services/Youtube'
-const DISCOVERY_DOCS = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class GoogleAuthContainer extends Component {
 
-  //---------------------INIT_CLIENT---------------------//
-
   componentDidMount(){
-    this.handleClientLoad()
-  }
-
-  handleClientLoad = () => {
-    window.gapi.load('client:auth2', this.initClient)
-  }
-
-  initClient = () => {
-    window.gapi.client.init({
-      apiKey: API_KEY,
-      discoveryDocs: DISCOVERY_DOCS,
-      clientId: CLIENT_ID,
-      scope: SCOPES
-    })
+    handleClientLoad()
   }
 
   //---------------------LOGIN---------------------//
@@ -64,7 +43,7 @@ class GoogleAuthContainer extends Component {
   loginUser = (user) => {
     // this will find_or_create user based on googleID
     // TODO - encode the googleID
-    this.fetchUser(user)
+    fetchUser(user)
     .then(railsUser => {
       // save response from rails in localStorage
       localStorage.setItem('user', JSON.stringify(user))
@@ -75,27 +54,7 @@ class GoogleAuthContainer extends Component {
     )
   }
 
-  fetchUser = (user) => {
-    return fetch(`${RAILS_API}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: user.w3.ig,
-        googleID: user.El,
-        image: user.w3.Paa,
-      })
-    })
-    .then(res => res.json())
-  }
-
   //---------------------LOGOUT---------------------//
-
-  logoutUser = () => {
-    this.props.dispatch(logout())
-    localStorage.clear()
-  }
 
   handleLogoutClick = (event) => {
     window.gapi.auth2.getAuthInstance().signOut()
@@ -103,7 +62,12 @@ class GoogleAuthContainer extends Component {
     )
   }
 
-  //---------------------BUTTONS---------------------//
+  logoutUser = () => {
+    this.props.dispatch(logout())
+    localStorage.clear()
+  }
+
+  //---------------------RENDER/REDUX---------------------//
 
   render() {
     return (
