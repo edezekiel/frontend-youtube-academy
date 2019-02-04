@@ -9,9 +9,8 @@ import SearchResult from '../presentational/SearchResult'
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
 import handleClientLoad from '../utils/handleClientLoad'
-import removeEmptyParams from '../utils/removeEmptyParams'
-import createResource from '../utils/createResource'
 import fetchOutline from '../utils/fetchOutline'
+import buildApiRequest from '../utils/buildApiRequest'
 
 import RAILS_API from '../services/Backend'
 
@@ -24,39 +23,12 @@ class SearchContainer extends Component {
     handleClientLoad()
   }
 
-  //---------------------BOILERPLATE---------------------//
-
-  buildApiRequest = (requestMethod, path, params, properties) => {
-    params = removeEmptyParams(params);
-    let request;
-    if (properties) {
-      let resource = createResource(properties);
-      request = window.gapi.client.request({
-          'body': resource,
-          'method': requestMethod,
-          'path': path,
-          'params': params
-      });
-    } else {
-      request = window.gapi.client.request({
-          'method': requestMethod,
-          'path': path,
-          'params': params
-      });
-    }
-    this.executeRequest(request);
-  }
-
-  executeRequest = (request) => {
-    request.execute(response => this.renderVideos(response));
-  }
-
   //---------------------SEARCH_YOUTUBE---------------------//
 
   search = (event) => {
     event.preventDefault()
     let searchTerm = event.target.searchTerm.value
-    this.buildApiRequest(
+    let request = buildApiRequest(
       'GET',
       '/youtube/v3/search',
       {'maxResults': '10',
@@ -64,6 +36,7 @@ class SearchContainer extends Component {
        'q': `${searchTerm}`,
        'type': ''}
     );
+    request.execute(response => this.renderVideos(response))
   }
 
   renderVideos = (response) => {
@@ -86,7 +59,7 @@ class SearchContainer extends Component {
     fetchOutline(outline, this.props)
   }
 
-  //---------------------SEARCH_FORM---------------------//
+  //---------------------RENDER/REDUX---------------------//
 
   render() {
       return(
