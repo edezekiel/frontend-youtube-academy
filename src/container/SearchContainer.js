@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import { Container } from 'semantic-ui-react'
-
-import SearchForm from '../presentational/SearchForm'
-import SearchResult from '../presentational/SearchResult'
 
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
@@ -12,13 +8,12 @@ import handleClientLoad from '../utils/handleClientLoad'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
-import RAILS_API from '../services/Backend'
+import SearchForm from '../presentational/SearchForm'
+import SearchResult from '../presentational/SearchResult'
 
 class SearchContainer extends Component {
 
-  // GoogleAuthContainer already signed user (current user)
-  // but,still need to initClient so that window.gapi is defined
-
+  // need to initClient again so that window.gapi is defined
   componentDidMount(){
     handleClientLoad()
   }

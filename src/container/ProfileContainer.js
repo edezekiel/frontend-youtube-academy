@@ -5,6 +5,7 @@ import { Container, Header } from 'semantic-ui-react'
 
 import { addUserOutline } from '../actions/addUserOutline'
 import { clearOutlines } from '../actions/clearOutlines'
+import fetchOutlines from '../utils/fetchOutlines'
 
 import ProfileCard from '../presentational/ProfileCard'
 import Outline from '../presentational/Outline'
@@ -13,20 +14,7 @@ import RAILS_API from '../services/Backend'
 class ProfileContainer extends Component {
 
   componentDidMount(){
-    this.fetchOutlines()
-  }
-
-  fetchOutlines = () => {
-    return fetch(`${RAILS_API}/useroutlines`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        googleID: this.props.user.El,
-      })
-    })
-    .then(res => res.json())
+    fetchOutlines(this.props)
     .then(response => this.updateOutlineState(response))
   }
 
