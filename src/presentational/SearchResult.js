@@ -11,11 +11,13 @@ const SearchResult = (props) => {
         <Grid columns={2}>
           <Grid.Column>
             <Form.Field>
-              <YouTubePlayer
-                width="400px"
-                url={`https://www.youtube.com/watch?v=${props.result}`}
-                controls
-              />
+            <YouTubePlayer
+              url={`https://www.youtube.com/watch?v=${props.result}`}
+              height='390px'
+              width='640px'
+              controls
+              host="https://www.youtube.com"
+            />
             </Form.Field>
           </Grid.Column>
 

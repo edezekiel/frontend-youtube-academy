@@ -2,14 +2,14 @@ import React from 'react'
 
 import { Segment, Header, Image } from 'semantic-ui-react'
 
-const Profile = (props) => {
+const ProfileCard = (props) => {
 
   return(
     <Segment>
-      <Header>Welcome {JSON.parse(localStorage.user).w3.ig}!</Header>
       <Image src={JSON.parse(localStorage.user).w3.Paa} />
+      <Header>Welcome {JSON.parse(localStorage.user).w3.ig}!</Header>
     </Segment>
   )
 }
 
-export default Profile
+export default ProfileCard

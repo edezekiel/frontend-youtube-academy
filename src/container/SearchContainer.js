@@ -123,8 +123,10 @@ class SearchContainer extends Component {
 
   renderVideos = (response) => {
     this.props.dispatch(clearSearchResults())
-    response.items.map(video => {
-      if (video.id.videoId) {this.props.dispatch(addSearchResult(video.id.videoId))}
+    response.items.filter(video => video.id.kind === "youtube#video")
+    .map(video => {
+      this.props.dispatch(addSearchResult(video.id.videoId))
+      return video
     })
   }
 
@@ -152,7 +154,6 @@ class SearchContainer extends Component {
       notes: event.target.videoNotes.value,
     }
     this.fetchOutline(outline)
-    .then(console.log)
   }
 
   //---------------------SEARCH_FORM---------------------//
@@ -176,9 +177,5 @@ class SearchContainer extends Component {
 let mapStateToProps = ({user, search}) => {
   return {user, search}
 }
-
-// let mapDispatchToProps = dispatch => {
-//   return {user, search}
-// }
 
 export default connect(mapStateToProps)(SearchContainer)
