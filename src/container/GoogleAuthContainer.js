@@ -7,8 +7,6 @@ import { logout } from '../actions/logout'
 
 import GoogleAuth from '../presentational/GoogleAuth'
 
-import { Button, Container } from 'semantic-ui-react'
-
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'

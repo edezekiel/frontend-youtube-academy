@@ -9,6 +9,7 @@ import SearchResult from '../presentational/SearchResult'
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
 
+import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
@@ -129,29 +130,29 @@ class SearchContainer extends Component {
 
   //---------------------SAVE_OUTLINE---------------------//
 
-  // fetchUser = (outline) => {
-  //   return fetch(`${RAILS_API}/outlines`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       video: outline.video,
-  //       notes: outline.notes,
-  //       user: outline.user
-  //     })
-  //   })
-  //   .then(res => res.json())
-  // }
+  fetchOutline = (outline) => {
+    return fetch(`${RAILS_API}/outlines`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        video: outline.video,
+        notes: outline.notes,
+        googleID: this.props.user.El,
+      })
+    })
+    .then(res => res.json())
+  }
 
   submitOutline = (event, video) => {
     event.preventDefault()
-      let outline = {
-        video: video,
-        notes: event.target.videoNotes.value,
-        user: this.props.user
-      }
-      console.log(outline)
+    let outline = {
+      video: `https://www.youtube.com/watch?v=${video}`,
+      notes: event.target.videoNotes.value,
+    }
+    this.fetchOutline(outline)
+    .then(console.log)
   }
 
   //---------------------SEARCH_FORM---------------------//

@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-const IndexVideos = (props) => {
-  console.log(props.user)
+const IndexOutlines = (props) => {
   return (
     <div> hi there</div>
   )
@@ -12,4 +11,4 @@ let mapStateToProps = ({user, search}) => {
   return {user, search}
 }
 
-export default connect(mapStateToProps)(IndexVideos)
+export default connect(mapStateToProps)(IndexOutlines)

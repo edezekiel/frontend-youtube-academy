@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Segment, Container, Button, Header, Image, Card } from 'semantic-ui-react'
+import { Segment, Container, Button, Image, Card } from 'semantic-ui-react'
 import googleLogo from '../assets/google.png'
 
 const GoogleAuth = (props) => {
