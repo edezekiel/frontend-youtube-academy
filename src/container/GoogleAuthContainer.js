@@ -5,12 +5,14 @@ import { withRouter } from 'react-router-dom'
 import { loginSuccess } from '../actions/loginSuccess'
 import { logout } from '../actions/logout'
 
+import { initClient } from '../utils/initClient'
+
 import GoogleAuth from '../presentational/GoogleAuth'
 
 import RAILS_API from '../services/Backend'
 import CLIENT_ID from '../services/ClientId'
 import API_KEY from '../services/Youtube'
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
+const DISCOVERY_DOCS = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class GoogleAuthContainer extends Component {
