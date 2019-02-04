@@ -136,17 +136,22 @@ class SearchContainer extends Component {
   //       'Content-Type': 'application/json'
   //     },
   //     body: JSON.stringify({
-  //       video: ,
-  //       notes: ,
+  //       video: outline.video,
+  //       notes: outline.notes,
+  //       user: outline.user
   //     })
   //   })
   //   .then(res => res.json())
   // }
 
-  submitOutline = (event) => {
+  submitOutline = (event, video) => {
     event.preventDefault()
-      let videoNotes = event.target.videoNotes.value
-      console.log(videoNotes)
+      let outline = {
+        video: video,
+        notes: event.target.videoNotes.value,
+        user: this.props.user
+      }
+      console.log(outline)
   }
 
   //---------------------SEARCH_FORM---------------------//

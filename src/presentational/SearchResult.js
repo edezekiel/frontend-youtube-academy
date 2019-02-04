@@ -7,17 +7,19 @@ import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 const SearchResult = (props) => {
   return(
     <Segment>
-      <Grid columns={2}>
-        <Grid.Column>
-          <YouTubePlayer
-            width="400px"
-            url={`https://www.youtube.com/watch?v=${props.result}`}
-            controls
-          />
-        </Grid.Column>
+      <Form onSubmit={(e) => props.submitOutline(e, props.result)}>
+        <Grid columns={2}>
+          <Grid.Column>
+            <Form.Field>
+              <YouTubePlayer
+                width="400px"
+                url={`https://www.youtube.com/watch?v=${props.result}`}
+                controls
+              />
+            </Form.Field>
+          </Grid.Column>
 
-        <Grid.Column>
-          <Form onSubmit={(e) => props.submitOutline(e)}>
+          <Grid.Column>
             <Form.Field
               label="Your Notes"
               control="textarea"
@@ -31,9 +33,9 @@ const SearchResult = (props) => {
               type="submit">
               Save Notes
             </Button>
-          </Form>
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+        </Grid>
+      </Form>
     </Segment>
   )
 }
