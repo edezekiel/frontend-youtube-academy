@@ -9,6 +9,9 @@ import SearchResult from '../presentational/SearchResult'
 import { addSearchResult } from '../actions/addSearchResult'
 import { clearSearchResults } from '../actions/clearSearchResults'
 import handleClientLoad from '../utils/handleClientLoad'
+import removeEmptyParams from '../utils/removeEmptyParams'
+import createResource from '../utils/createResource'
+import fetchOutline from '../utils/fetchOutline'
 
 import RAILS_API from '../services/Backend'
 
@@ -24,10 +27,10 @@ class SearchContainer extends Component {
   //---------------------BOILERPLATE---------------------//
 
   buildApiRequest = (requestMethod, path, params, properties) => {
-    params = this.removeEmptyParams(params);
+    params = removeEmptyParams(params);
     let request;
     if (properties) {
-      let resource = this.createResource(properties);
+      let resource = createResource(properties);
       request = window.gapi.client.request({
           'body': resource,
           'method': requestMethod,
@@ -42,46 +45,6 @@ class SearchContainer extends Component {
       });
     }
     this.executeRequest(request);
-  }
-
-  createResource = (properties) => {
-    let resource = {};
-    let normalizedProps = properties;
-    for (let p in properties) {
-      let value = properties[p];
-      if (p && p.substr(-2, 2) === '[]') {
-        let adjustedName = p.replace('[]', '');
-        if (value) {
-          normalizedProps[adjustedName] = value.split(',');
-        }
-        delete normalizedProps[p];
-      }
-    }
-    for (let p in normalizedProps) {
-      // Leave properties that don't have values out of inserted resource.
-      if (normalizedProps.hasOwnProperty(p) && normalizedProps[p]) {
-        let propArray = p.split('.');
-        let ref = resource;
-        for (let pa = 0; pa < propArray.length; pa++) {
-          let key = propArray[pa];
-          if (pa === propArray.length - 1) {
-            ref[key] = normalizedProps[p];
-          } else {
-            ref = ref[key] = ref[key] || {};
-          }
-        }
-      };
-    }
-    return resource;
-  }
-
-  removeEmptyParams = (params) => {
-    for (let p in params) {
-      if (!params[p] || params[p] === 'undefined') {
-        delete params[p];
-      }
-    }
-    return params;
   }
 
   executeRequest = (request) => {
@@ -114,28 +77,13 @@ class SearchContainer extends Component {
 
   //---------------------SAVE_OUTLINE---------------------//
 
-  fetchOutline = (outline) => {
-    return fetch(`${RAILS_API}/outlines`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        video: outline.video,
-        notes: outline.notes,
-        googleID: this.props.user.El,
-      })
-    })
-    .then(res => res.json())
-  }
-
   submitOutline = (event, video) => {
     event.preventDefault()
     let outline = {
       video: `https://www.youtube.com/watch?v=${video}`,
       notes: event.target.videoNotes.value,
     }
-    this.fetchOutline(outline)
+    fetchOutline(outline, this.props)
   }
 
   //---------------------SEARCH_FORM---------------------//
