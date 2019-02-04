@@ -11,12 +11,7 @@ const GoogleAuth = (props) => {
         <Card centered>
           <Image src={googleLogo} />
           <Card.Content>
-            <Button
-              onClick={props.authHandler}
-              as='a'
-              inverted
-              color='red'
-              >
+            <Button onClick={props.authHandler} as='a' inverted color='red'>
               {props.message}
             </Button>
           </Card.Content>
