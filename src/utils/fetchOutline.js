@@ -1,15 +1,16 @@
 import RAILS_API from '../services/Backend'
 
-let fetchOutline = (outline, props) => {
+let fetchOutline = (outline, user) => {
   return fetch(`${RAILS_API}/outlines`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      video: outline.video,
+      videoId: outline.videoId,
+      videoTitle: outline.videoTitle,
       notes: outline.notes,
-      googleID: props.user.El,
+      googleID: user.El,
     })
   })
   .then(res => res.json())

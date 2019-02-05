@@ -8,8 +8,10 @@ import handleClientLoad from '../utils/handleClientLoad'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
+import Video from '../presentational/Video'
+
 import SearchForm from '../presentational/SearchForm'
-import SearchResult from '../presentational/SearchResult'
+import CreateOutline from '../presentational/CreateOutline'
 
 class SearchContainer extends Component {
 
@@ -37,20 +39,21 @@ class SearchContainer extends Component {
   renderVideos = (response) => {
     response.items.filter(video => video.id.kind === "youtube#video")
     .map(video => {
-      this.props.dispatch(addSearchResult(video.id.videoId))
+      this.props.dispatch(addSearchResult(video))
       return video
     })
   }
 
   //---------------------SAVE_OUTLINE---------------------//
 
-  submitOutline = (event, video) => {
+  submitOutline = (event, videoId, videoTitle, user) => {
     event.preventDefault()
     let outline = {
-      video: `https://www.youtube.com/watch?v=${video}`,
+      videoId: `https://www.youtube.com/watch?v=${videoId}`,
+      videoTitle: videoTitle,
       notes: event.target.videoNotes.value,
     }
-    fetchOutline(outline, this.props)
+    fetchOutline(outline, user)
   }
 
   //---------------------RENDER/REDUX---------------------//
@@ -59,12 +62,13 @@ class SearchContainer extends Component {
       return(
         <Container>
           <SearchForm search={this.search} />
-          {this.props.search.map((result, i) =>
-            <SearchResult
-              result={result}
+          {this.props.search.map((video, i) =>
+            <CreateOutline
+              videoId={video.videoId}
+              videoTitle={video.videoTitle}
+              user={this.props.user}
               key={i}
-              submitOutline={this.submitOutline}
-            />
+              submitOutline={this.submitOutline}/>
           )}
         </Container>
       )

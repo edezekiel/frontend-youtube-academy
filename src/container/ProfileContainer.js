@@ -32,7 +32,8 @@ class ProfileContainer extends Component {
         {this.props.outline.map((outline, i) =>
           <Outline
             key={i}
-            video={outline.video}
+            videoId={outline.videoId}
+            videoTitle={outline.videoTitle}
             notes={outline.notes}
           />
         )}
