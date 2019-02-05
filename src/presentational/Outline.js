@@ -3,16 +3,22 @@ import {connect} from 'react-redux'
 
 import Video from './Video'
 
-import { Segment, Header } from 'semantic-ui-react'
+import { Segment, Header, Container } from 'semantic-ui-react'
 
 const Outline = (props) => {
-  console.log(props.outline)
   return(
-    <Segment>
-      <Header>{props.outline[0].videoTitle}</Header>
-      {props.outline[0].notes}
-      <Video videoId={props.outline[0].videoId} />
-    </Segment>
+    <Container>
+      <Segment>
+        <Header>Outline for "{props.outline[0].videoTitle}"</Header>
+      </Segment>
+      <Segment>
+        <Video videoId={props.outline[0].videoId} />
+      </Segment>
+      <Segment>
+        <Header>Your Notes:</Header>
+        {props.outline[0].notes}
+      </Segment>
+    </Container>
   )
 }
 
