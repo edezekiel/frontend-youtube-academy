@@ -2,46 +2,30 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Button, Form, Segment, Header } from "semantic-ui-react";
-import fetchNotebook from "../utils/fetchNotebook";
+import fetchCreateNotebook from "../utils/fetchCreateNotebook";
+import CreateNotebookForm from "../presentational/CreateNotebookForm";
 
 class CreateNotebookContainer extends Component {
-  //---------------------SAVE_NOTEBOOK---------------------//
-
-  submitNotebook = (event, title, outlines, user) => {
+  submitNotebook = (event, user) => {
     event.preventDefault();
     let notebook = {
-      title: title,
-      outlines: []
+      title: event.target.notebookTitle.value,
     };
-    fetchNotebook(notebook, user);
+    fetchCreateNotebook(notebook, user);
   };
 
   render() {
     return (
-      <Segment>
-        <Header>{this.props.title}</Header>
-        <Form
-          onSubmit={event =>
-            this.props.submitNotebook(
-              event,
-              this.props.title,
-              this.props.outlines,
-              this.props.user
-            )
-          }
-        >
-          <Form.Field>
-            <label>Title</label>
-            <input />
-          </Form.Field>
-
-          <Button inverted color="red" type="submit">
-            Create Notebook
-          </Button>
-        </Form>
-      </Segment>
+      <CreateNotebookForm
+        submitNotebook={this.submitNotebook}
+        user={this.props.user}
+      />
     );
   }
 }
 
-export default CreateNotebookContainer;
+let mapStateToProps = ({user}) => {
+  return {user}
+}
+
+export default connect(mapStateToProps)(CreateNotebookContainer)

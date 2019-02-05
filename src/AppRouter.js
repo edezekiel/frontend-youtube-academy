@@ -15,14 +15,10 @@ const AppRouter = props => {
     <Container>
       <NavBar />
       <Switch>
-        <Route
-          exact
-          path="/createNotebook"
-          component={CreateNotebookContainer}
-        />
         <Route exact path="/logout" component={GoogleAuthContainer} />
         <Route exact path="/search" component={SearchContainer} />
         <Route exact path="/outlines/:id" component={OutlineContainer} />
+        <Route exact path="/notebooks/create" component={CreateNotebookContainer} />
         <Route exact path="/notebooks/:id" component={NotebookContainer} />
         <Route exact path="/" component={RootContainer} />
       </Switch>

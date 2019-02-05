@@ -9,7 +9,7 @@ import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
 import SearchForm from '../presentational/SearchForm'
-import CreateOutline from '../presentational/CreateOutline'
+import CreateOutlineForm from '../presentational/CreateOutlineForm'
 
 class SearchContainer extends Component {
 
@@ -62,7 +62,7 @@ class SearchContainer extends Component {
         <Container>
           <SearchForm search={this.search} />
           {this.props.search.map((video, i) =>
-            <CreateOutline
+            <CreateOutlineForm
               videoId={video.videoId}
               videoTitle={video.videoTitle}
               user={this.props.user}

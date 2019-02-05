@@ -60,7 +60,7 @@ class ProfileContainer extends Component {
 
           <Grid.Column>
             <Header>Your Notebooks:</Header>
-            <Link to="/createNotebook">
+            <Link to="/notebooks/create">
               <Button as="a" inverted color="red">
                 Create Notebook
               </Button>
