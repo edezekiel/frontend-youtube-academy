@@ -1,18 +1,17 @@
-import RAILS_API from '../services/Backend'
+import RAILS_API from "../services/Backend";
 
 let fetchNotebook = (notebook, user) => {
   return fetch(`${RAILS_API}/notebooks`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       title: notebook.title,
       outlines: notebook.outlines,
-      googleID: user.El,
+      googleID: user.El
     })
-  })
-  .then(res => res.json())
-}
+  }).then(res => res.json());
+};
 
-export default fetchNotebook
+export default fetchNotebook;

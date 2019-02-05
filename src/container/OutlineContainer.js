@@ -1,24 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import Outline from '../presentational/Outline'
+import Outline from "../presentational/Outline";
 
 class OutlineContainer extends Component {
-
-  findOutline = (props) => {
+  findOutline = props => {
     return props.outlines.filter(outline => {
-      return outline.id === parseInt(props.match.params.id)
-    })
-  }
+      return outline.id === parseInt(props.match.params.id);
+    });
+  };
 
-  render(){
-    return (
-      <Outline outline={this.findOutline(this.props)} />
-    )
+  render() {
+    return <Outline outline={this.findOutline(this.props)} />;
   }
 }
 
-let mapStateToProps = ({outlines}) => {
-  return {outlines}
-}
-export default connect(mapStateToProps)(OutlineContainer)
+let mapStateToProps = ({ outlines }) => {
+  return { outlines };
+};
+export default connect(mapStateToProps)(OutlineContainer);

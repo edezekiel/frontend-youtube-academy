@@ -1,3 +1,3 @@
-export function addUserNotebook(notebook){
-  return { type: 'ADD_USER_NOTEBOOK', notebook: notebook}
+export function addUserNotebook(notebook) {
+  return { type: "ADD_USER_NOTEBOOK", notebook: notebook };
 }

@@ -1,3 +1,3 @@
-export function clearNotebooks(){
-  return { type: 'CLEAR_NOTEBOOKS' }
+export function clearNotebooks() {
+  return { type: "CLEAR_NOTEBOOKS" };
 }
