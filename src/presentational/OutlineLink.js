@@ -5,11 +5,11 @@ import { Header, List } from 'semantic-ui-react'
 
 const OutlineLink = (props) => {
   return (
-    <Link to={"/" + props.outline.id}>
       <List.Item>
-        <List.Header>{props.outline.videoTitle}</List.Header>
+        <Link to={"/" + props.outline.id}>
+          <List.Header as='a'>{props.outline.videoTitle}</List.Header>
+        </Link>
       </List.Item>
-    </Link>
   )
 }
 

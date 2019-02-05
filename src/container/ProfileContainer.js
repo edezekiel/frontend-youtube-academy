@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Container, Header, List } from 'semantic-ui-react'
+import { Container, Header, List, Grid } from 'semantic-ui-react'
 
 import { addUserOutline } from '../actions/addUserOutline'
 import { clearOutlines } from '../actions/clearOutlines'
@@ -29,12 +29,21 @@ class ProfileContainer extends Component {
     return (
       <Container>
         <ProfileCard />
-        <Header>Here are your saved outlines:</Header>
-          <List divided animated relaxed verticalAlign="middle">
-            {this.props.outline.map((outline, i) =>
-              <OutlineLink key={outline.id} outline={outline}/>
-            )}
-          </List>
+        <Grid columns={2}>
+          <Grid.Column>
+            <Header>Outlines:</Header>
+            <List divided animated relaxed verticalAlign="middle">
+              {this.props.outline.map((outline, i) =>
+                <OutlineLink key={outline.id} outline={outline}/>
+              )}
+            </List>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Header>Notebooks:</Header>
+          </Grid.Column>
+        </Grid>
+
       </Container>
     )
   }
