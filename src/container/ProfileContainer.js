@@ -9,7 +9,6 @@ import fetchOutlines from '../utils/fetchOutlines'
 
 import ProfileCard from '../presentational/ProfileCard'
 import Outline from '../presentational/Outline'
-import RAILS_API from '../services/Backend'
 
 class ProfileContainer extends Component {
 
@@ -20,7 +19,6 @@ class ProfileContainer extends Component {
 
   updateOutlineState = (response) => {
     response.map(outline => {
-      this.props.dispatch(clearOutlines())
       this.props.dispatch(addUserOutline(outline))
       return outline
     })
