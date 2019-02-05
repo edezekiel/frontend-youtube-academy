@@ -1,3 +1,3 @@
 export function clearSearchResults(){
-  return { type: 'ClEAR_SEARCH_RESULTS' }
+  return { type: 'CLEAR_SEARCH_RESULTS' }
 }

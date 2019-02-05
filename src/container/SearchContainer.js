@@ -35,6 +35,7 @@ class SearchContainer extends Component {
   }
 
   renderVideos = (response) => {
+    this.props.dispatch(clearSearchResults())
     response.items.filter(video => video.id.kind === "youtube#video")
     .map(video => {
       this.props.dispatch(addSearchResult(video))
