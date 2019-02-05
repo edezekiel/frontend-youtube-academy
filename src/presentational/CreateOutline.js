@@ -2,7 +2,7 @@ import React from 'react'
 
 import Video from './Video'
 
-import { Button, Form, Segment, Grid, Header } from 'semantic-ui-react'
+import { Button, Form, Segment, Header } from 'semantic-ui-react'
 
 const CreateOutline = (props) => {
   return(

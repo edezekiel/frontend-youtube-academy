@@ -9,19 +9,21 @@ import fetchUserOutlines from '../utils/fetchUserOutlines'
 
 import OutlineLink from '../presentational/OutlineLink'
 import ProfileCard from '../presentational/ProfileCard'
-import Outline from '../presentational/Outline'
 
 class ProfileContainer extends Component {
 
   componentDidMount(){
-    fetchUserOutlines(this.props)
-    .then(response => this.updateOutlineState(response))
+    this.dispatchUserOutlines(this.props)
   }
 
-  updateOutlineState = (response) => {
-    response.map(outline => {
-      this.props.dispatch(addUserOutline(outline))
-      return outline
+  dispatchUserOutlines = (props) => {
+    props.dispatch(clearOutlines())
+    fetchUserOutlines(props.user)
+    .then(response => {
+      response.map(outline => {
+        props.dispatch(addUserOutline(outline))
+        return outline
+      })
     })
   }
 
@@ -32,11 +34,14 @@ class ProfileContainer extends Component {
         <Grid columns={2}>
           <Grid.Column>
             <Header>Outlines:</Header>
-            <List divided animated relaxed verticalAlign="middle">
-              {this.props.outlines.map((outline, i) =>
-                <OutlineLink key={outline.id} outline={outline}/>
-              )}
-            </List>
+            {this.props.outlines ?
+              <List divided animated relaxed verticalAlign="middle">
+                {this.props.outlines.map((outline, i) =>
+                  <OutlineLink key={outline.id} outline={outline}/>
+                )}
+              </List>
+              : null
+            }
           </Grid.Column>
 
         <Grid.Column>

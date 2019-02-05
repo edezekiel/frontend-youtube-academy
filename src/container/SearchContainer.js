@@ -8,8 +8,6 @@ import handleClientLoad from '../utils/handleClientLoad'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
-import Video from '../presentational/Video'
-
 import SearchForm from '../presentational/SearchForm'
 import CreateOutline from '../presentational/CreateOutline'
 

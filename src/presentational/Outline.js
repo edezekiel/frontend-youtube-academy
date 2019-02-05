@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Video from './Video'
 
-import { Segment, Container, Header } from 'semantic-ui-react'
+import { Segment, Header } from 'semantic-ui-react'
 
 const Outline = (props) => {
   console.log(props)
