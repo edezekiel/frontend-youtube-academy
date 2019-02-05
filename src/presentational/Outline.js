@@ -9,14 +9,14 @@ const Outline = props => {
   return (
     <Container>
       <Segment>
-        <Header>Outline for "{props.outline[0].videoTitle}"</Header>
+        <Header>Outline for "{props.outline.videoTitle}"</Header>
       </Segment>
       <Segment>
-        <Video videoId={props.outline[0].videoId} />
+        <Video videoId={props.outline.videoId} />
       </Segment>
       <Segment>
         <Header>Your Notes:</Header>
-        {props.outline[0].notes}
+        {props.outline.notes}
       </Segment>
     </Container>
   );

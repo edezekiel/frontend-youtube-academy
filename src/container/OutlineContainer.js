@@ -11,7 +11,7 @@ class OutlineContainer extends Component {
   };
 
   render() {
-    return <Outline outline={this.findOutline(this.props)} />;
+    return <Outline outline={this.findOutline(this.props)[0]} />;
   }
 }
 

@@ -4,19 +4,31 @@ import { connect } from "react-redux";
 import { Segment, Header, Container } from "semantic-ui-react";
 import fetchShowNotebook from "../utils/fetchShowNotebook";
 
+import Outline from "./Outline";
+
 class Notebook extends Component {
-  // fetch the notebook show, and render outlines too
+  state = {
+    notebook: []
+  };
   componentDidMount() {
-    fetchShowNotebook(this.props.notebook[0].id).then(response =>
-      console.log(response)
+    fetchShowNotebook(this.props.notebook[0].id).then(notebook =>
+      this.setState({ notebook: notebook })
     );
   }
 
   render() {
+    console.log(this.state.notebook);
     return (
       <Container>
         <Segment>
-          <Header>Notebook for "{this.props.notebook[0].title}"</Header>
+          <Header>"{this.props.notebook[0].title}"</Header>
+        </Segment>
+        <Segment>
+          {this.state.notebook.outlines
+            ? this.state.notebook.outlines.map(outline => (
+                <Outline outline={outline} />
+              ))
+            : null}
         </Segment>
       </Container>
     );
