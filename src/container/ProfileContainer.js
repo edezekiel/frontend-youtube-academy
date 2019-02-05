@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, List } from 'semantic-ui-react'
 
 import { addUserOutline } from '../actions/addUserOutline'
 import { clearOutlines } from '../actions/clearOutlines'
 import fetchOutlines from '../utils/fetchOutlines'
 
+import OutlineLink from '../presentational/OutlineLink'
 import ProfileCard from '../presentational/ProfileCard'
 import Outline from '../presentational/Outline'
 
@@ -29,14 +30,11 @@ class ProfileContainer extends Component {
       <Container>
         <ProfileCard />
         <Header>Here are your saved outlines:</Header>
-        {this.props.outline.map((outline, i) =>
-          <Outline
-            key={i}
-            videoId={outline.videoId}
-            videoTitle={outline.videoTitle}
-            notes={outline.notes}
-          />
-        )}
+          <List divided animated relaxed verticalAlign="middle">
+            {this.props.outline.map((outline, i) =>
+              <OutlineLink key={outline.id} outline={outline}/>
+            )}
+          </List>
       </Container>
     )
   }

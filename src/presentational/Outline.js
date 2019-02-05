@@ -6,6 +6,7 @@ import Video from './Video'
 import { Segment, Container, Header } from 'semantic-ui-react'
 
 const Outline = (props) => {
+  console.log(props)
   return(
     <Segment>
       <Header>{props.videoTitle}</Header>

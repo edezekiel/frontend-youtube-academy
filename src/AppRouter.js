@@ -6,6 +6,7 @@ import NavBar from './presentational/NavBar'
 import RootContainer from './container/RootContainer'
 import GoogleAuthContainer from './container/GoogleAuthContainer'
 import SearchContainer from './container/SearchContainer'
+import Outline from './presentational/Outline'
 
 const AppRouter = (props) => {
   return(
@@ -14,6 +15,7 @@ const AppRouter = (props) => {
       <Switch>
         <Route exact path='/logout'component={GoogleAuthContainer}/>
         <Route exact path='/search'component={SearchContainer}/>
+        <Route exact path='/:id'component={Outline}/>
         <Route exact path='/'component={RootContainer}/>
       </Switch>
     </Container>
