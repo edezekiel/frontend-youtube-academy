@@ -1,6 +1,6 @@
 import RAILS_API from '../services/Backend'
 
-let fetchOutlines = (props) => {
+let fetchUserOutlines = (props) => {
   return fetch(`${RAILS_API}/useroutlines`, {
     method: 'POST',
     headers: {
@@ -13,4 +13,4 @@ let fetchOutlines = (props) => {
   .then(res => res.json())
 }
 
-export default fetchOutlines
+export default fetchUserOutlines

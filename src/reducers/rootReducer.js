@@ -7,5 +7,5 @@ import outlineReducer from './outlineReducer'
 export default combineReducers({
   user: userReducer,
   search: searchReducer,
-  outline: outlineReducer
+  outlines: outlineReducer
 })
