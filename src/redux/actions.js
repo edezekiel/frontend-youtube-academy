@@ -30,3 +30,7 @@ export function logout(){
   localStorage.clear()
   return { type: 'LOGOUT'}
 }
+
+export function displayNotebook(notebook) {
+  return { type: "GET_USER_NOTEBOOK", notebook: notebook };
+}

@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import { Segment, Header, Container } from "semantic-ui-react";
-import fetchShowNotebook from "../utils/fetchShowNotebook";
 
 import Outline from "./Outline";
 
 class Notebook extends Component {
-  state = {
-    notebook: []
-  };
-  componentDidMount() {
-    fetchShowNotebook(this.props.notebook[0].id).then(notebook =>
-      this.setState({ notebook: notebook })
-    );
-  }
+
 
   render() {
     return (
@@ -34,8 +25,4 @@ class Notebook extends Component {
   }
 }
 
-let mapStateToProps = ({ user, notebooks }) => {
-  return { user, notebooks };
-};
-
-export default connect(mapStateToProps)(Notebook);
+export default Notebook;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Container, Header, List, Grid, Button } from "semantic-ui-react";
+import { Container, Grid, Button } from "semantic-ui-react";
 
 import Outlines from './Outlines'
 import Notebooks from './Notebooks'
@@ -24,7 +24,7 @@ const Profile = props => {
             <Notebooks notebooks={props.notebooks} />
           ) : null}
           <Link to="/notebooks/create">
-            <Button as="a" inverted color="red">
+            <Button inverted color="red">
               Create Notebook
             </Button>
           </Link>
