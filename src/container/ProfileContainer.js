@@ -12,7 +12,7 @@ import { clearNotebooks } from "../actions/clearNotebooks";
 import fetchUserOutlines from "../utils/fetchUserOutlines";
 import fetchUserNotebooks from "../utils/fetchUserNotebooks";
 
-import OutlineLink from "../presentational/OutlineLink";
+import Outlines from '../presentational/Outlines'
 import NotebookLink from "../presentational/NotebookLink";
 import ProfileCard from "../presentational/ProfileCard";
 
@@ -48,14 +48,10 @@ class ProfileContainer extends Component {
         <ProfileCard />
         <Grid columns={2}>
           <Grid.Column>
-            <Header>Your Outlines:</Header>
-            {this.props.outlines ? (
-              <List divided animated relaxed verticalAlign="middle">
-                {this.props.outlines.map((outline, i) => (
-                  <OutlineLink key={outline.id} outline={outline} />
-                ))}
-              </List>
-            ) : null}
+            {this.props.outlines ?
+              <Outlines outlines={this.props.outlines} />
+              : null
+            }
           </Grid.Column>
 
           <Grid.Column>
