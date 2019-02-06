@@ -4,15 +4,22 @@ import { connect } from "react-redux";
 import fetchOutlineNote from "../utils/fetchOutlineNote";
 import CreateOutlineNoteForm from "../presentational/CreateOutlineNoteForm";
 
-// title: event.target.notebookTitle.value,
-
 class CreateOutlineNoteContainer extends Component {
-  submitOutlineNote = (event, user) => {
+  findOutline = props => {
+    return props.outlines.filter(outline => {
+      return outline.id === parseInt(props.match.params.id);
+    });
+  };
+
+  submitOutlineNote = (event, selectedNotebook, user, outline) => {
     event.preventDefault();
+    // selected checkbox's class will be "ui checked checkbox"
+
+    this.props.notebooks.filter()
     let outlineNote = {
-      outline: null,
-      notebook: null,
-      user: this.props.user
+      outline: outline.id,
+      notebook: selectedNotebook.value,
+      user: user.w3.Eea
     };
     fetchOutlineNote(outlineNote);
   };
@@ -22,13 +29,15 @@ class CreateOutlineNoteContainer extends Component {
       <CreateOutlineNoteForm
         submitOutlineNote={this.submitOutlineNote}
         user={this.props.user}
+        notebooks={this.props.notebooks}
+        outline={this.findOutline(this.props)[0]}
       />
     );
   }
 }
 
-let mapStateToProps = ({user}) => {
-  return {user}
+let mapStateToProps = ({user, outlines, notebooks}) => {
+  return {user, outlines, notebooks}
 }
 
 export default connect(mapStateToProps)(CreateOutlineNoteContainer)

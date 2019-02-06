@@ -1,40 +1,47 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Video from "./Video";
 
-import { Button, Form, Segment, Header } from "semantic-ui-react";
+import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
 
-const CreateOutlineNoteForm = props => {
-  return (
-    <Segment>
-      <Header>{props.videoTitle}</Header>
-      <Form
-        onSubmit={event =>
-          props.submitOutline(
-            event,
-            props.videoId,
-            props.videoTitle,
-            props.user
-          )
-        }
-      >
-        <Form.Field>
-          <Video videoId={props.videoId} />
-        </Form.Field>
+class CreateOutlineNoteForm extends Component {
+  state = {}
+  handleChange = (e, { value }) => this.setState({ value })
 
-        <Form.Field
-          label="Your Notes"
-          name="videoNotes"
-          control="textarea"
-          placeholder="Take notes on your favorite videos."
-        />
+  render() {
+    return (
+      <Segment>
+        <Header>{this.props.videoTitle}</Header>
+        <Form
+          onSubmit={event => this.props.submitOutlineNote(event,
+            this.state,
+            this.props.user,
+            this.props.outline
+          )}>
 
-        <Button inverted color="red" type="submit">
-          Save Video Outline
-        </Button>
-      </Form>
-    </Segment>
-  );
+          <Header>Notebooks:</Header>
+          {this.props.notebooks.map(notebook => {
+            return (
+              <Form.Field>
+                <Radio
+                  label={notebook.title}
+                  name="radioGroup"
+                  value={notebook.id}
+                  checked={this.state.value === notebook.id}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            )
+          })}
+
+          <Button inverted color="red" type="submit">
+            Save Outline To Notebook
+          </Button>
+
+        </Form>
+      </Segment>
+    );
+  }
 };
 
 export default CreateOutlineNoteForm;
