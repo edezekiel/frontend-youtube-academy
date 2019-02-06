@@ -18,7 +18,9 @@ class CreateOutlineNoteContainer extends Component {
       notebook: selectedNotebook.value,
       user: user
     };
-    fetchOutlineNote(outlineNote);
+    fetchOutlineNote(outlineNote)
+    .then(response => this.props.history.push(`/notebooks/${response.notebook.id}`))
+
   };
 
   render() {
