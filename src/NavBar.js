@@ -14,12 +14,13 @@ const NavBar = (props) =>  {
 
       { props.user ?
         <Fragment>
-          <Link to="/logout" className="item">
-            <Header as='h3'>Logout</Header>
+
+          <Link to="/profile" className="item">
+            <Header as='h3'>Profile</Header>
           </Link>
 
-          <Link to="/search" className="item">
-            <Header as='h3'>Search</Header>
+          <Link to="/logout" className="item">
+            <Header as='h3'>Logout</Header>
           </Link>
         </Fragment>
         : null

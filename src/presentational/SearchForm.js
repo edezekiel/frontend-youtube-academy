@@ -1,13 +1,17 @@
 import React from "react";
 
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Container, Button, Header, Form, Segment } from "semantic-ui-react";
 
 const SearchForm = props => {
   return (
+    <Container>
+    <Segment basic>
+      <Header>What Do You Want To Learn Next?</Header>
+    </Segment>
     <Segment>
       <Form onSubmit={e => props.search(e)}>
         <Form.Field>
-          <label>Search YouTube</label>
+          <label>Search through Youtube, take notes, and save your "outline" for future reference.</label>
           <input placeholder="e.g., Redux tutorials" name="searchTerm" />
         </Form.Field>
         <Button inverted color="red" type="submit">
@@ -15,6 +19,7 @@ const SearchForm = props => {
         </Button>
       </Form>
     </Segment>
+    </Container>
   );
 };
 

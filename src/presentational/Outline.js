@@ -16,19 +16,9 @@ const Outline = props => {
         <Segment basic>
           <Grid columns={3} centered>
             <Grid.Column textAlign='center'>
-            <Link to="/notebooks/create">
-              <Button inverted color="red">
-                Add Outline To Notebook
-              </Button>
-            </Link>
-            </Grid.Column>
-            <Grid.Column textAlign='center'>
-              <Header>Or</Header>
-            </Grid.Column>
-            <Grid.Column textAlign='center'>
               <Link to="/notebooks/create">
                 <Button inverted color="red">
-                  Create Notebook
+                  Add Outline To Notebook
                 </Button>
               </Link>
             </Grid.Column>
