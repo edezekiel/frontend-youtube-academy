@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { displayNotebook } from '../redux/actions'
+import { displayNotebook } from "../redux/actions";
 import Notebook from "../presentational/Notebook";
 import fetchShowNotebook from "../utils/fetchShowNotebook";
 
 class NotebookContainer extends Component {
-
   componentDidMount() {
-    let notebookId = this.props.match.params.id
-    fetchShowNotebook(this.findNotebook(this.props.notebooks, notebookId)[0].id)
-    .then(notebook => displayNotebook(notebook))
+    fetchShowNotebook(
+      this.findNotebook(this.props.notebooks, this.props.match.params.id)[0].id
+    ).then(notebook => displayNotebook(notebook));
   }
 
   findNotebook = (notebooks, notebookId) => {
@@ -20,14 +19,13 @@ class NotebookContainer extends Component {
   };
 
   render() {
-    // console.log(this.findNotebook(this.props.notebooks, notebookId))
-
     return (
-      <div>{ this.props.notebook ?
-      <Notebook notebook={this.props.notebook} />
-      : null
-      }</div>
-    )
+      <div>
+        {this.props.notebook ? (
+          <Notebook notebook={this.props.notebook} />
+        ) : null}
+      </div>
+    );
   }
 }
 
