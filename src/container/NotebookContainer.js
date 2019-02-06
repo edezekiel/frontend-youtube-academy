@@ -15,7 +15,7 @@ class NotebookContainer extends Component {
   }
 }
 
-let mapStateToProps = ({ notebooks }) => {
-  return { notebooks };
+let mapStateToProps = ({ user, notebooks }) => {
+  return { user, notebooks };
 };
 export default connect(mapStateToProps)(NotebookContainer);

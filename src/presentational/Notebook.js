@@ -17,7 +17,6 @@ class Notebook extends Component {
   }
 
   render() {
-    console.log(this.state.notebook);
     return (
       <Container>
         <Segment>

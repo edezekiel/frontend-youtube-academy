@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import Video from "./Video";
 
@@ -22,8 +21,4 @@ const Outline = props => {
   );
 };
 
-let mapStateToProps = ({ user, search }) => {
-  return { user, search };
-};
-
-export default connect(mapStateToProps)(Outline);
+export default Outline;
