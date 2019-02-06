@@ -30,7 +30,7 @@ const CreateOutlineForm = props => {
         />
 
         <Button inverted color="red" type="submit">
-          Save Notes
+          Save Video Outline
         </Button>
       </Form>
     </Segment>

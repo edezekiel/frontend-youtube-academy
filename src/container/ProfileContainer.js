@@ -3,26 +3,16 @@ import { connect } from "react-redux";
 
 import Profile from '../presentational/Profile'
 
-import { addUserOutline, addUserNotebook, clearOutlines, clearNotebooks } from '../redux/actions';
+import { addUserNotebook, clearOutlines, clearNotebooks } from '../redux/actions';
+import dispatchUserOutlines from '../utils/dispatchUserOutlines';
 
-import fetchUserOutlines from "../utils/fetchUserOutlines";
 import fetchUserNotebooks from "../utils/fetchUserNotebooks";
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    this.dispatchUserOutlines(this.props);
+    dispatchUserOutlines(this.props);
     this.dispatchUserNotebooks(this.props);
   }
-
-  dispatchUserOutlines = props => {
-    props.dispatch(clearOutlines());
-    fetchUserOutlines(props.user).then(response => {
-      response.map(outline => {
-        props.dispatch(addUserOutline(outline));
-        return outline;
-      });
-    });
-  };
 
   dispatchUserNotebooks = props => {
     props.dispatch(clearNotebooks());

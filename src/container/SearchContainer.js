@@ -4,6 +4,7 @@ import { Container } from 'semantic-ui-react'
 
 import { addSearchResult, clearSearchResults } from '../redux/actions'
 import handleClientLoad from '../utils/handleClientLoad'
+import dispatchUserOutlines from '../utils/dispatchUserOutlines'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
@@ -52,6 +53,12 @@ class SearchContainer extends Component {
       notes: event.target.videoNotes.value,
     }
     fetchOutline(outline, user)
+    .then(response => this.redirectToOutline(response.id))
+  }
+
+  redirectToOutline = (id) => {
+    dispatchUserOutlines(this.props)
+    .then(response => this.props.history.push(`/outlines/${id}`))
   }
 
   //---------------------RENDER/REDUX---------------------//
@@ -73,8 +80,8 @@ class SearchContainer extends Component {
     }
   }
 
-let mapStateToProps = ({user, search}) => {
-  return {user, search}
+let mapStateToProps = ({user, search }) => {
+  return {user, search }
 }
 
 export default connect(mapStateToProps)(SearchContainer)
