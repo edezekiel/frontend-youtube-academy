@@ -9,23 +9,13 @@ const Outline = props => {
   return (
     <Container>
       <Segment>
-        <Segment textAlign='center' size="huge" basic>
-          <Header>Outline for "{props.outline.videoTitle}"</Header>
-        </Segment>
-
-        <Segment basic>
-          <Grid columns={3} centered>
-            <Grid.Column textAlign='center'>
-              <Link to="/notebooks/create">
-                <Button inverted color="red">
-                  Add Outline To Notebook
-                </Button>
-              </Link>
-            </Grid.Column>
-          </Grid>
-        </Segment>
+        <Header>Outline: {props.outline.videoTitle}</Header>
+        <Link to="/outline/create">
+          <Button inverted color="red">
+            Add Outline To Notebook(s)
+          </Button>
+        </Link>
       </Segment>
-
       <Segment>
         <Segment basic>
           <Video videoId={props.outline.videoId} />

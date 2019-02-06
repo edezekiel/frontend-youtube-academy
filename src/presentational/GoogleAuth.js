@@ -5,7 +5,7 @@ import { Grid, Segment, Button, Icon } from "semantic-ui-react";
 const GoogleAuth = props => {
   return (
     <Grid>
-      <Grid.Row style={{ height: "90vh" }}>
+      <Grid.Row >
         <Grid.Column>
           <Segment
             style={{
