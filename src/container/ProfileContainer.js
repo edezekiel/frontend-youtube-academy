@@ -3,10 +3,7 @@ import { connect } from "react-redux";
 
 import Profile from '../presentational/Profile'
 
-import { addUserOutline } from "../actions/addUserOutline";
-import { addUserNotebook } from "../actions/addUserNotebook";
-import { clearOutlines } from "../actions/clearOutlines";
-import { clearNotebooks } from "../actions/clearNotebooks";
+import { addUserOutline, addUserNotebook, clearOutlines, clearNotebooks } from '../redux/actions';
 
 import fetchUserOutlines from "../utils/fetchUserOutlines";
 import fetchUserNotebooks from "../utils/fetchUserNotebooks";

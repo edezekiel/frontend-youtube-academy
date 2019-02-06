@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 
-import { addSearchResult } from '../actions/addSearchResult'
-import { clearSearchResults } from '../actions/clearSearchResults'
+import { addSearchResult, clearSearchResults } from '../redux/actions'
 import handleClientLoad from '../utils/handleClientLoad'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
@@ -62,12 +61,12 @@ class SearchContainer extends Component {
         <Container>
           <SearchForm search={this.search} />
           {this.props.search.map((video, i) =>
-            <CreateOutlineForm
-              videoId={video.videoId}
-              videoTitle={video.videoTitle}
-              user={this.props.user}
-              key={i}
-              submitOutline={this.submitOutline}/>
+          <CreateOutlineForm
+            videoId={video.videoId}
+            videoTitle={video.videoTitle}
+            user={this.props.user}
+            key={i}
+            submitOutline={this.submitOutline}/>
           )}
         </Container>
       )
