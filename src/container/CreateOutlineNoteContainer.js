@@ -13,13 +13,10 @@ class CreateOutlineNoteContainer extends Component {
 
   submitOutlineNote = (event, selectedNotebook, user, outline) => {
     event.preventDefault();
-    // selected checkbox's class will be "ui checked checkbox"
-
-    this.props.notebooks.filter()
     let outlineNote = {
       outline: outline.id,
       notebook: selectedNotebook.value,
-      user: user.w3.Eea
+      user: user
     };
     fetchOutlineNote(outlineNote);
   };

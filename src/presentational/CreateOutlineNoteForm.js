@@ -20,9 +20,9 @@ class CreateOutlineNoteForm extends Component {
           )}>
 
           <Header>Notebooks:</Header>
-          {this.props.notebooks.map(notebook => {
+          {this.props.notebooks.map((notebook, i) => {
             return (
-              <Form.Field>
+              <Form.Field key={i}>
                 <Radio
                   label={notebook.title}
                   name="radioGroup"
