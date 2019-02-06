@@ -6,6 +6,10 @@ export function addUserNotebook(notebook) {
   return { type: "ADD_USER_NOTEBOOK", notebook: notebook };
 }
 
+export function showNotebook(notebook) {
+  return { type: "SHOW_NOTEBOOK", notebook: notebook };
+}
+
 export function addUserOutline(outline){
   return { type: 'ADD_USER_OUTLINE', outline: outline}
 }
@@ -29,8 +33,4 @@ export function loginSuccess(user){
 export function logout(){
   localStorage.clear()
   return { type: 'LOGOUT'}
-}
-
-export function displayNotebook(notebook) {
-  return { type: "GET_USER_NOTEBOOK", notebook: notebook };
 }

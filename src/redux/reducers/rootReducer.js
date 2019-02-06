@@ -9,5 +9,5 @@ export default combineReducers({
   user: userReducer,
   search: searchReducer,
   outlines: outlineReducer,
-  notebooks: notebookReducer
+  notebooks: notebookReducer,
 });
