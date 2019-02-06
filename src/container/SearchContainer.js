@@ -56,6 +56,9 @@ class SearchContainer extends Component {
     .then(response => this.redirectToOutline(response.id))
   }
 
+  // dispatchUserOutlines contains a fetch,
+  // so page redirect must wait until dispatch is complete
+
   redirectToOutline = (id) => {
     dispatchUserOutlines(this.props)
     .then(response => this.props.history.push(`/outlines/${id}`))
