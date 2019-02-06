@@ -10,6 +10,7 @@ import ProfileContainer from "./container/ProfileContainer";
 import OutlineContainer from "./container/OutlineContainer";
 import NotebookContainer from "./container/NotebookContainer";
 import CreateNotebookContainer from "./container/CreateNotebookContainer";
+import CreateOutlineNoteContainer from "./container/CreateOutlineNoteContainer";
 
 const AppRouter = props => {
   return (
@@ -19,6 +20,7 @@ const AppRouter = props => {
         <Route exact path="/logout" component={GoogleAuthContainer} />
         <Route exact path="/search" component={SearchContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
+        <Route exact path="/outlines/outlinenote/create/:id" component={CreateOutlineNoteContainer} />
         <Route exact path="/outlines/:id" component={OutlineContainer} />
         <Route exact path="/notebooks/create" component={CreateNotebookContainer} />
         <Route exact path="/notebooks/:id" component={NotebookContainer} />

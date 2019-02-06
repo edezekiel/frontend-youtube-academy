@@ -10,7 +10,7 @@ const Outline = props => {
     <Container>
       <Segment>
         <Header>Outline: {props.outline.videoTitle}</Header>
-        <Link to="/outline/create">
+        <Link to={"/outlines/outlinenote/create/" + props.outline.id}>
           <Button inverted color="red">
             Add Outline To Notebook(s)
           </Button>
