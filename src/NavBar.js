@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Menu, Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/favicon.png'
+import logo from './assets/favicon.png'
 
 const NavBar = (props) =>  {
   return (

@@ -4,7 +4,7 @@ import { Segment, Header, Container } from "semantic-ui-react";
 
 import Outline from "./Outline";
 
-const Notebook = (props) => {
+const Notebook = props => {
   return (
     <Container>
       <Segment>
@@ -19,6 +19,6 @@ const Notebook = (props) => {
       </Segment>
     </Container>
   );
-}
+};
 
 export default Notebook;

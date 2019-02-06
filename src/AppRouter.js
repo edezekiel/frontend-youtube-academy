@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
-import NavBar from "./presentational/NavBar";
+import NavBar from "./NavBar";
 import RootContainer from "./container/RootContainer";
 import GoogleAuthContainer from "./container/GoogleAuthContainer";
 import SearchContainer from "./container/SearchContainer";

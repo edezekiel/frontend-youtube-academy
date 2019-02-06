@@ -1,10 +1,9 @@
-import React from 'react'
+import React from "react";
 
 import { Container, Header, List } from "semantic-ui-react";
 import OutlineLink from "./OutlineLink";
 
-const Outlines = (props) => {
-
+const Outlines = props => {
   return (
     <Container>
       <Header>Your Outlines:</Header>
@@ -14,7 +13,7 @@ const Outlines = (props) => {
         ))}
       </List>
     </Container>
-  )
-}
+  );
+};
 
-export default Outlines
+export default Outlines;

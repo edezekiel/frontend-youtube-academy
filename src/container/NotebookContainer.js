@@ -7,10 +7,10 @@ import fetchShowNotebook from "../utils/fetchShowNotebook";
 
 class NotebookContainer extends Component {
   componentDidMount() {
-    this.renderNotebook()
+    this.dispatchNotebook()
   }
 
-  renderNotebook = (props) => {
+  dispatchNotebook = (props) => {
     this.props.dispatch(clearNotebooks())
     fetchShowNotebook(parseInt(this.props.match.params.id))
     .then(notebook => this.props.dispatch(showNotebook(notebook)));

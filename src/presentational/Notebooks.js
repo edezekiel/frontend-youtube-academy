@@ -1,10 +1,9 @@
-import React from 'react'
+import React from "react";
 
 import { Container, Header, List } from "semantic-ui-react";
 import NotebookLink from "./NotebookLink";
 
-const Notebooks = (props) => {
-
+const Notebooks = props => {
   return (
     <Container>
       <Header>Your Notebooks:</Header>
@@ -14,7 +13,7 @@ const Notebooks = (props) => {
         ))}
       </List>
     </Container>
-  )
-}
+  );
+};
 
-export default Notebooks
+export default Notebooks;

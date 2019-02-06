@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import { Container, Grid, Button } from "semantic-ui-react";
 
-import Outlines from './Outlines'
-import Notebooks from './Notebooks'
+import Outlines from "./Outlines";
+import Notebooks from "./Notebooks";
 import ProfileCard from "./ProfileCard";
 
 const Profile = props => {
@@ -13,16 +13,11 @@ const Profile = props => {
       <ProfileCard />
       <Grid columns={2}>
         <Grid.Column>
-          {props.outlines ?
-            <Outlines outlines={props.outlines} />
-            : null
-          }
+          {props.outlines ? <Outlines outlines={props.outlines} /> : null}
         </Grid.Column>
 
         <Grid.Column>
-          {props.notebooks ? (
-            <Notebooks notebooks={props.notebooks} />
-          ) : null}
+          {props.notebooks ? <Notebooks notebooks={props.notebooks} /> : null}
           <Link to="/notebooks/create">
             <Button inverted color="red">
               Create Notebook
@@ -34,4 +29,4 @@ const Profile = props => {
   );
 };
 
-export default Profile
+export default Profile;
