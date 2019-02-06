@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Container, Grid, Header, Segment, Button } from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 
 import Outlines from "./Outlines";
 import Notebooks from "./Notebooks";
@@ -20,13 +20,6 @@ const Profile = props => {
         <Grid.Column>
           <Header>Your Notebooks:</Header>
           {props.notebooks ? <Notebooks notebooks={props.notebooks} /> : null}
-          <Segment basic style={{"padding-left":"0px"}}>
-          <Link to="/notebooks/create">
-            <Button inverted color="red">
-              Create Notebook
-            </Button>
-          </Link>
-          </Segment>
         </Grid.Column>
       </Grid>
     </Container>

@@ -1,21 +1,49 @@
 import React from "react";
 
-import Video from "./Video";
+import { Segment, Grid, Header, Container, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-import { Segment, Header, Container } from "semantic-ui-react";
+import Video from "./Video";
 
 const Outline = props => {
   return (
     <Container>
       <Segment>
-        <Header>Outline for "{props.outline.videoTitle}"</Header>
+        <Segment textAlign='center' size="huge" basic>
+          <Header>Outline for "{props.outline.videoTitle}"</Header>
+        </Segment>
+
+        <Segment basic>
+          <Grid columns={3} centered>
+            <Grid.Column textAlign='center'>
+            <Link to="/notebooks/create">
+              <Button inverted color="red">
+                Add Outline To Notebook
+              </Button>
+            </Link>
+            </Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Header>Or</Header>
+            </Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Link to="/notebooks/create">
+                <Button inverted color="red">
+                  Create Notebook
+                </Button>
+              </Link>
+            </Grid.Column>
+          </Grid>
+        </Segment>
       </Segment>
+
       <Segment>
-        <Video videoId={props.outline.videoId} />
-      </Segment>
-      <Segment>
-        <Header>Your Notes:</Header>
-        {props.outline.notes}
+        <Segment basic>
+          <Video videoId={props.outline.videoId} />
+        </Segment>
+        <Segment basic>
+          <Header>Your Notes:</Header>
+          {props.outline.notes}
+        </Segment>
       </Segment>
     </Container>
   );
