@@ -1,6 +1,6 @@
 import RAILS_API from '../services/Backend'
 
-let fetchOutlineNote = (outlineNote) => {
+let fetchCreateOutlineNote = (outlineNote) => {
   return fetch(`${RAILS_API}/outline_notes`, {
     method: 'POST',
     headers: {
@@ -15,4 +15,4 @@ let fetchOutlineNote = (outlineNote) => {
   .then(res => res.json())
 }
 
-export default fetchOutlineNote
+export default fetchCreateOutlineNote

@@ -1,6 +1,6 @@
 import RAILS_API from '../services/Backend'
 
-let fetchOutline = (outline, user) => {
+let fetchCreateOutline = (outline, email) => {
   return fetch(`${RAILS_API}/outlines`, {
     method: 'POST',
     headers: {
@@ -10,10 +10,10 @@ let fetchOutline = (outline, user) => {
       videoId: outline.videoId,
       videoTitle: outline.videoTitle,
       notes: outline.notes,
-      googleID: user.El,
+      email: email,
     })
   })
   .then(res => res.json())
 }
 
-export default fetchOutline
+export default fetchCreateOutline

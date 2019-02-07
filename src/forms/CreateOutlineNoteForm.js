@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import fetchOutlineNote from "../utils/fetchOutlineNote";
+import fetchCreateOutlineNote from "../utils/fetchCreateOutlineNote";
 import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
 
 class CreateOutlineNoteForm extends Component {
@@ -21,7 +21,7 @@ class CreateOutlineNoteForm extends Component {
       notebook: selectedNotebook.value,
       user: user
     };
-    fetchOutlineNote(outlineNote)
+    fetchCreateOutlineNote(outlineNote)
     .then(response => console.log(response))
 //this.props.history.push(`/notebooks/${response.notebook.id}`)
   };

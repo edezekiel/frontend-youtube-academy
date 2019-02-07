@@ -1,40 +1,62 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from 'react-redux'
 
 import Video from "../presentational/Video";
+import { withRouter } from 'react-router'
 
+import fetchCreateOutline from '../utils/fetchCreateOutline'
+import { addUserOutline } from '../redux/actions'
 import { Button, Form, Segment, Header } from "semantic-ui-react";
 
-const CreateOutlineForm = props => {
-  return (
-    <Segment>
-      <Header>{props.videoTitle}</Header>
-      <Form
-        onSubmit={event =>
-          props.submitOutline(
-            event,
-            props.videoId,
-            props.videoTitle,
-            props.user
-          )
-        }
-      >
-        <Form.Field>
-          <Video videoId={props.videoId} />
-        </Form.Field>
+class CreateOutlineForm extends Component {
+  submitOutline = (event, videoId, videoTitle) => {
+    event.preventDefault()
+    let outline = {
+      videoId: `https://www.youtube.com/watch?v=${videoId}`,
+      videoTitle: videoTitle,
+      notes: event.target.videoNotes.value,
+    }
+    fetchCreateOutline(outline, this.props.user.email)
+    .then(response => this.props.dispatch(addUserOutline(response)))
+    .then(response => this.props.history.push(`/outlines/${response.id}`))
+  }
 
-        <Form.Field
-          label="Your Notes"
-          name="videoNotes"
-          control="textarea"
-          placeholder="Take notes on your favorite videos."
-        />
+  render() {
+    console.log(this.props)
+    return (
+      <Segment>
+        <Header>{this.props.video.videoTitle}</Header>
+        <Form
+          onSubmit={event =>
+            this.submitOutline(
+              event,
+              this.props.video.videoId,
+              this.props.video.videoTitle,
+            )
+          }
+        >
+          <Form.Field>
+            <Video videoId={this.props.video.videoId} />
+          </Form.Field>
 
-        <Button inverted color="red" type="submit">
-          Save Video Outline
-        </Button>
-      </Form>
-    </Segment>
-  );
+          <Form.Field
+            label="Your Notes"
+            name="videoNotes"
+            control="textarea"
+            placeholder="Take notes on your favorite videos."
+          />
+
+          <Button inverted color="red" type="submit">
+            Save Video Outline
+          </Button>
+        </Form>
+      </Segment>
+    );
+  }
 };
 
-export default CreateOutlineForm;
+let mapStateToProps = ({user}) => {
+  return {user}
+}
+
+export default withRouter(connect(mapStateToProps)(CreateOutlineForm))

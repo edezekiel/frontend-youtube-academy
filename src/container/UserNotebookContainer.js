@@ -6,7 +6,6 @@ import OutlineLink from '../presentational/OutlineLink'
 
 class UserNotebookContainer extends Component {
   render() {
-    console.log(this.props.notebook.outlines)
     return (
       <Container>
           <Container>

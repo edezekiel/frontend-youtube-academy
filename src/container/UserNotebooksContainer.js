@@ -5,7 +5,6 @@ import { Container, List } from "semantic-ui-react";
 import NotebookLink from "../presentational/NotebookLink";
 
 class UserNotebooksContainer extends Component {
-
   render() {
     return(
       <Container>

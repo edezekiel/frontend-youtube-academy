@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
-import { withRouter } from 'react-router'
 
-import { addSearchResult, addUserOutline } from '../redux/actions'
 import handleClientLoad from '../utils/handleClientLoad'
-import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
+import { addSearchResult } from '../redux/actions'
 
 import SearchForm from '../presentational/SearchForm'
 import CreateOutlineForm from '../forms/CreateOutlineForm'
@@ -44,17 +42,6 @@ class SearchContainer extends Component {
 
   //---------------------SAVE_OUTLINE---------------------//
 
-  submitOutline = (event, videoId, videoTitle, user) => {
-    event.preventDefault()
-    let outline = {
-      videoId: `https://www.youtube.com/watch?v=${videoId}`,
-      videoTitle: videoTitle,
-      notes: event.target.videoNotes.value,
-    }
-    fetchOutline(outline, user)
-    .then(response => this.props.dispatch(addUserOutline(response)))
-    .then(response => this.props.history.push(`/outlines/${response.id}`))
-  }
 
   //---------------------RENDER/REDUX---------------------//
 
@@ -63,12 +50,11 @@ class SearchContainer extends Component {
         <Container>
           <SearchForm search={this.search} />
           {this.props.search.map((video, i) =>
-          <CreateOutlineForm
-            videoId={video.videoId}
-            videoTitle={video.videoTitle}
-            user={this.props.user}
-            key={i}
-            submitOutline={this.submitOutline}/>
+            <CreateOutlineForm
+              video={video}
+              user={this.props.user}
+              key={i}
+              submitOutline={this.submitOutline}/>
           )}
         </Container>
       )
@@ -79,4 +65,4 @@ let mapStateToProps = ({user, search }) => {
   return {user, search }
 }
 
-export default withRouter(connect(mapStateToProps)(SearchContainer))
+export default connect(mapStateToProps)(SearchContainer)
