@@ -18,7 +18,7 @@ class CreateOutlineForm extends Component {
     }
     fetchCreateOutline(outline, this.props.user.email)
     .then(response => this.props.dispatch(addUserOutline(response)))
-    // .then(response => this.props.history.push(`/outlines/${response.id}`))
+    .then(response => this.props.history.push(`/outlines/${response.outline.id}`))
   }
 
   render() {

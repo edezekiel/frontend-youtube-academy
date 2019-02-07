@@ -12,7 +12,6 @@ export default function userReducer(state = JSON.parse(checkUser()), action){
     case 'LOGOUT':
       return null
     case 'ADD_USER_OUTLINE':
-      debugger
       return {...state, outlines: state.outlines.concat(action.outline)}
     default:
       return state
