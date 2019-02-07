@@ -1,4 +1,4 @@
-export default function outlineReducer(state = [], action){
+export default function outlinesReducer(state = [], action){
   switch(action.type) {
     case 'ADD_USER_OUTLINE':
       return [...state, action.outline]

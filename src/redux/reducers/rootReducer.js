@@ -2,12 +2,12 @@ import { combineReducers } from "redux";
 
 import userReducer from "./userReducer";
 import searchReducer from "./searchReducer";
-import outlineReducer from "./outlineReducer";
-import notebookReducer from "./notebookReducer";
+import outlinesReducer from "./outlinesReducer";
+import notebooksReducer from "./notebooksReducer";
 
 export default combineReducers({
   user: userReducer,
   search: searchReducer,
-  outlines: outlineReducer,
-  notebooks: notebookReducer,
+  outlines: outlinesReducer,
+  notebooks: notebooksReducer,
 });

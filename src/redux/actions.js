@@ -6,10 +6,6 @@ export function addUserNotebook(notebook) {
   return { type: "ADD_USER_NOTEBOOK", notebook: notebook };
 }
 
-export function showNotebook(notebook) {
-  return { type: "SHOW_NOTEBOOK", notebook: notebook };
-}
-
 export function addUserOutline(outline){
   return { type: 'ADD_USER_OUTLINE', outline: outline}
 }
