@@ -4,7 +4,7 @@ import { Button, Form, Segment, Header } from "semantic-ui-react";
 
 import fetchCreateNotebook from "../utils/fetchCreateNotebook";
 
-class CreateNotebook extends Component {
+class CreateNotebookForm extends Component {
   submitNotebook = (event, user) => {
     event.preventDefault();
     let notebook = {
@@ -33,4 +33,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default connect(mapStateToProps)(CreateNotebook)
+export default connect(mapStateToProps)(CreateNotebookForm)

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import fetchOutlineNote from "../utils/fetchOutlineNote";
 import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
 
-class CreateOutlineNoteContainer extends Component {
+class CreateOutlineNoteForm extends Component {
   state = {}
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -67,4 +67,4 @@ let mapStateToProps = ({user, outlines, notebooks}) => {
   return {user, outlines, notebooks}
 }
 
-export default connect(mapStateToProps)(CreateOutlineNoteContainer)
+export default connect(mapStateToProps)(CreateOutlineNoteForm)

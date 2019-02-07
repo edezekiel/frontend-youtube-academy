@@ -1,6 +1,6 @@
 import React from "react";
 
-import Video from "./Video";
+import Video from "../presentational/Video";
 
 import { Button, Form, Segment, Header } from "semantic-ui-react";
 

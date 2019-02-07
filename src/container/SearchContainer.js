@@ -9,7 +9,7 @@ import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
 import SearchForm from '../presentational/SearchForm'
-import CreateOutlineForm from '../presentational/CreateOutlineForm'
+import CreateOutlineForm from '../forms/CreateOutlineForm'
 
 class SearchContainer extends Component {
 
