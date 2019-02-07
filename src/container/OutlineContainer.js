@@ -7,19 +7,19 @@ import { Link } from "react-router-dom";
 import Video from "../presentational/Video";
 
 class OutlineContainer extends Component {
-  state = {
-    outline: null
-  }
-
-  componentDidMount(){
-    this.setState({outline: this.findOutline(this.props.outlines)[0]})
-  }
-
-  findOutline = (outlines) => {
-    return outlines.filter(outline => {
-      return outline.id === parseInt(this.props.match.params.id);
-    });
-  };
+  // state = {
+  //   outline: null
+  // }
+  //
+  // componentDidMount(){
+  //   this.setState({outline: this.findOutline(this.props.outlines)[0]})
+  // }
+  //
+  // findOutline = (outlines) => {
+  //   return outlines.filter(outline => {
+  //     return outline.id === parseInt(this.props.match.params.id);
+  //   });
+  // };
 
   render() {
     return (
@@ -51,7 +51,7 @@ class OutlineContainer extends Component {
   }
 }
 
-let mapStateToProps = ({ outlines }) => {
-  return { outlines };
+let mapStateToProps = ({ user }) => {
+  return { user };
 };
 export default connect(mapStateToProps)(OutlineContainer);

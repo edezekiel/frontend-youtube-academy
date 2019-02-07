@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import RootContainer from "./container/RootContainer";
 import GoogleAuthContainer from "./container/GoogleAuthContainer";
 import SearchContainer from "./container/SearchContainer";
-import ProfileContainer from "./container/ProfileContainer";
+import Profile from "./container/Profile";
 import OutlineContainer from "./container/OutlineContainer";
 import NotebookContainer from "./container/NotebookContainer";
 
@@ -21,7 +21,7 @@ const AppRouter = props => {
       <Switch>
         <Route exact path="/logout" component={GoogleAuthContainer} />
         <Route exact path="/search" component={SearchContainer} />
-        <Route exact path="/profile" component={ProfileContainer} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/notebooks/create" component={CreateNotebookForm} />
         <Route exact path="/outlines/outlinenote/create/:id" component={CreateOutlineNoteForm} />
         <Route exact path="/outlines/:id" component={OutlineContainer} />

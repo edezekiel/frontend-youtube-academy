@@ -3,12 +3,20 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { loginSuccess, logout } from '../redux/actions'
-import fetchUser from '../utils/fetchUser'
 import handleClientLoad from '../utils/handleClientLoad'
 import GoogleAuth from '../presentational/GoogleAuth'
+import RAILS_API from '../services/Backend'
+
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class GoogleAuthContainer extends Component {
+  state = {
+    email: "",
+    name: "",
+    image: "",
+    access_token: "",
+    id_token: ""
+  }
 
   componentDidMount(){
     handleClientLoad()
@@ -39,19 +47,34 @@ class GoogleAuthContainer extends Component {
     }
   }
 
-  loginUser = (user) => {
+  loginUser = (googleUser) => {
     // this will find_or_create user based on googleID
     // TODO - encode the googleID
-    fetchUser(user)
+    this.setState({
+      email: googleUser.w3.U3,
+      name: googleUser.w3.ig,
+      image: googleUser.w3.Paa,
+      access_token: googleUser.Zi.access_token,
+      id_token: googleUser.Zi.id_token
+    })
+    fetch(`${RAILS_API}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
     .then(railsUser => {
       // save response from rails in localStorage
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('user', JSON.stringify(railsUser))
       // dispatch response to Redux store
-      this.props.dispatch(loginSuccess(user))
+      this.props.dispatch(loginSuccess(railsUser))
       this.props.history.push('/')
       }
     )
   }
+
 
   //---------------------LOGOUT---------------------//
 
@@ -71,8 +94,8 @@ class GoogleAuthContainer extends Component {
   render() {
     return (
       <GoogleAuth
-        authHandler={this.props.user? this.handleLogoutClick : this.handleLoginClick }
-        message={this.props.user? "Log Out" : "Login With Google" }/>
+        authHandler={this.props.user ? this.handleLogoutClick : this.handleLoginClick }
+        message={this.props.user ? "Log Out" : "Login With Google" }/>
     )
   }
 }

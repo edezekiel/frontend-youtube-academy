@@ -10,7 +10,7 @@ class NotebooksContainer extends Component {
     return(
       <Container>
         <List divided animated relaxed verticalAlign="middle">
-          {this.props.notebooks.map(notebook => (
+          {this.props.user.notebooks.map(notebook => (
             <NotebookLink key={notebook.id} notebook={notebook} />
           ))}
         </List>
@@ -19,7 +19,7 @@ class NotebooksContainer extends Component {
   }
 }
 
-let mapStateToProps = ({ notebooks }) => {
-  return { notebooks };
+let mapStateToProps = ({ user }) => {
+  return { user };
 };
 export default connect(mapStateToProps)(NotebooksContainer);

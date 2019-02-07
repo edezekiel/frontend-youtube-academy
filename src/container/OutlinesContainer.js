@@ -10,7 +10,7 @@ class OutlinesContainer extends Component {
     return(
       <Container>
         <List divided animated relaxed verticalAlign="middle">
-          {this.props.outlines.map(outline => (
+          {this.props.user.outlines.map(outline => (
             <OutlineLink key={outline.id} outline={outline} />
           ))}
         </List>
@@ -19,7 +19,7 @@ class OutlinesContainer extends Component {
   }
 }
 
-let mapStateToProps = ({ outlines }) => {
-  return { outlines };
+let mapStateToProps = ({ user }) => {
+  return { user };
 };
 export default connect(mapStateToProps)(OutlinesContainer);

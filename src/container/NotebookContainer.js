@@ -9,12 +9,12 @@ class NotebookContainer extends Component {
 
   // fetchNotebookOutlines(this.state.notebook.id)
   // .then(response => this.setState({outlines: response}))
-
-  findNotebook = (notebooks) => {
-    return notebooks.filter(notebook => {
-      return notebook.id === parseInt(this.props.match.params.id);
-    });
-  };
+  //
+  // findNotebook = (notebooks) => {
+  //   return notebooks.filter(notebook => {
+  //     return notebook.id === parseInt(this.props.match.params.id);
+  //   });
+  // };
 
   render() {
     return (
@@ -33,12 +33,12 @@ class NotebookContainer extends Component {
   }
 }
 
-let mapStateToProps = ({ notebooks }, ownProps) => {
+let mapStateToProps = ({ user }, ownProps) => {
   console.log(ownProps);
   // props.match.params.id
   // let notebook = notebooks.find(...)
   // return { notebook: notebook }
-  return { notebooks };
+  return { user };
 };
 
 export default connect(mapStateToProps)(NotebookContainer);
