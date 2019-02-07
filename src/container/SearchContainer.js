@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
+import { withRouter } from 'react-router'
 
 import { addSearchResult, clearSearchResults } from '../redux/actions'
 import handleClientLoad from '../utils/handleClientLoad'
@@ -87,4 +88,4 @@ let mapStateToProps = ({user, search }) => {
   return {user, search }
 }
 
-export default connect(mapStateToProps)(SearchContainer)
+export default withRouter(connect(mapStateToProps)(SearchContainer))
