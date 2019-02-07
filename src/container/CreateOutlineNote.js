@@ -1,22 +1,41 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import Video from "./Video";
-
+import fetchOutlineNote from "../utils/fetchOutlineNote";
 import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
 
-class CreateOutlineNoteForm extends Component {
+class CreateOutlineNoteContainer extends Component {
   state = {}
   handleChange = (e, { value }) => this.setState({ value })
 
+  findOutline = props => {
+    return props.outlines.filter(outline => {
+      return outline.id === parseInt(props.match.params.id);
+    });
+  };
+
+  submitOutlineNote = (event, selectedNotebook, user, outline) => {
+    event.preventDefault();
+    let outlineNote = {
+      outline: outline.id,
+      notebook: selectedNotebook.value,
+      user: user
+    };
+    fetchOutlineNote(outlineNote)
+    .then(response => console.log(response))
+//this.props.history.push(`/notebooks/${response.notebook.id}`)
+  };
+
   render() {
     return (
+
       <Segment>
         <Header>{this.props.videoTitle}</Header>
         <Form
-          onSubmit={event => this.props.submitOutlineNote(event,
+          onSubmit={event => this.submitOutlineNote(event,
             this.state,
             this.props.user,
-            this.props.outline
+            this.findOutline(this.props.outline)[0]
           )}>
 
           <Header>Notebooks:</Header>
@@ -42,6 +61,10 @@ class CreateOutlineNoteForm extends Component {
       </Segment>
     );
   }
-};
+}
 
-export default CreateOutlineNoteForm;
+let mapStateToProps = ({user, outlines, notebooks}) => {
+  return {user, outlines, notebooks}
+}
+
+export default connect(mapStateToProps)(CreateOutlineNoteContainer)

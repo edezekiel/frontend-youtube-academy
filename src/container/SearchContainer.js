@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 import { withRouter } from 'react-router'
 
-import { addSearchResult, clearSearchResults } from '../redux/actions'
+import { addSearchResult, addUserOutline } from '../redux/actions'
 import handleClientLoad from '../utils/handleClientLoad'
-import dispatchUserOutlines from '../utils/dispatchUserOutlines'
 import fetchOutline from '../utils/fetchOutline'
 import buildApiRequest from '../utils/buildApiRequest'
 
@@ -36,7 +35,6 @@ class SearchContainer extends Component {
   }
 
   renderVideos = (response) => {
-    this.props.dispatch(clearSearchResults())
     response.items.filter(video => video.id.kind === "youtube#video")
     .map(video => {
       this.props.dispatch(addSearchResult(video))
@@ -54,15 +52,8 @@ class SearchContainer extends Component {
       notes: event.target.videoNotes.value,
     }
     fetchOutline(outline, user)
-    .then(response => this.redirectToOutline(response.id))
-  }
-
-  // dispatchUserOutlines contains a fetch,
-  // so page redirect must wait until dispatch is complete
-
-  redirectToOutline = (id) => {
-    dispatchUserOutlines(this.props)
-    .then(response => this.props.history.push(`/outlines/${id}`))
+    .then(response => this.props.dispatch(addUserOutline(response)))
+    .then(response => this.props.history.push(`/outlines/${response.id}`))
   }
 
   //---------------------RENDER/REDUX---------------------//

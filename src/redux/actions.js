@@ -14,18 +14,6 @@ export function addUserOutline(outline){
   return { type: 'ADD_USER_OUTLINE', outline: outline}
 }
 
-export function clearNotebooks() {
-  return { type: "CLEAR_NOTEBOOKS" };
-}
-
-export function clearOutlines(){
-  return { type: 'CLEAR_OUTLINES' }
-}
-
-export function clearSearchResults(){
-  return { type: 'CLEAR_SEARCH_RESULTS' }
-}
-
 export function loginSuccess(user){
   return { type: 'LOGIN', user: user}
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { showNotebook, clearNotebooks } from "../redux/actions";
+import { showNotebook } from "../redux/actions";
 import Notebook from "../presentational/Notebook";
 import fetchShowNotebook from "../utils/fetchShowNotebook";
 
@@ -11,7 +11,6 @@ class NotebookContainer extends Component {
   }
 
   dispatchNotebook = (props) => {
-    this.props.dispatch(clearNotebooks())
     fetchShowNotebook(parseInt(this.props.match.params.id))
     .then(notebook => this.props.dispatch(showNotebook(notebook)));
   }

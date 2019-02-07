@@ -2,7 +2,9 @@ import React from "react";
 
 import { Segment, Header, Container } from "semantic-ui-react";
 
-import Outlines from "./Outlines";
+// {props.notebook[0].outlines ?
+//     <OutlinesContainer outlines={props.notebook[0].outlines} />
+// : null}
 
 const Notebook = props => {
   return (
@@ -12,9 +14,7 @@ const Notebook = props => {
       </Segment>
       <Segment>
         <Header>Outlines:</Header>
-        {props.notebook[0].outlines ?
-            <Outlines outlines={props.notebook[0].outlines} />
-        : null}
+
       </Segment>
     </Container>
   );

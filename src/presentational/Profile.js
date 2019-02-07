@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 import { Container, Grid, Header, Button, Segment } from "semantic-ui-react";
 
-import Outlines from "./Outlines";
-import Notebooks from "./Notebooks";
+import OutlinesContainer from "../container/OutlinesContainer";
+import NotebooksContainer from "../container/NotebooksContainer";
+
 import ProfileCard from "./ProfileCard";
 
 const Profile = props => {
@@ -14,12 +15,12 @@ const Profile = props => {
       <Grid columns={2}>
         <Grid.Column>
           <Header>Your Outlines:</Header>
-          {props.outlines ? <Outlines outlines={props.outlines} /> : null}
-        </Grid.Column>
+            <OutlinesContainer />
+          </Grid.Column>
 
         <Grid.Column>
           <Header>Your Notebooks:</Header>
-          {props.notebooks ? <Notebooks notebooks={props.notebooks} /> : null}
+            <NotebooksContainer />
           <Segment>
             <Link to="/notebooks/create">
               <Button inverted color="red">
