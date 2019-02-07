@@ -13,6 +13,8 @@ export default function userReducer(state = JSON.parse(checkUser()), action){
       return null
     case 'ADD_USER_OUTLINE':
       return {...state, outlines: state.outlines.concat(action.outline)}
+    case 'CREATE_OUTLINE_NOTE':
+      return action.user
     default:
       return state
   }

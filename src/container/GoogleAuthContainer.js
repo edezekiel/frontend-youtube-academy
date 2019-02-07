@@ -10,14 +10,6 @@ import RAILS_API from '../services/Backend'
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 class GoogleAuthContainer extends Component {
-  state = {
-    email: "",
-    name: "",
-    image: "",
-    access_token: "",
-    id_token: ""
-  }
-
   componentDidMount(){
     handleClientLoad()
   }
@@ -50,19 +42,20 @@ class GoogleAuthContainer extends Component {
   loginUser = (googleUser) => {
     // this will find_or_create user based on googleID
     // TODO - encode the googleID
-    this.setState({
+    let transmitUser = {
       email: googleUser.w3.U3,
       name: googleUser.w3.ig,
       image: googleUser.w3.Paa,
       access_token: googleUser.Zi.access_token,
       id_token: googleUser.Zi.id_token
-    })
+    }
+
     fetch(`${RAILS_API}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(transmitUser)
     })
     .then(res => res.json())
     .then(railsUser => {

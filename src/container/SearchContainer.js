@@ -40,9 +40,6 @@ class SearchContainer extends Component {
     })
   }
 
-  //---------------------SAVE_OUTLINE---------------------//
-
-
   //---------------------RENDER/REDUX---------------------//
 
   render() {
