@@ -16,10 +16,12 @@ class CreateOutlineNoteForm extends Component {
       notebook: selectedNotebook.value,
     };
     fetchCreateOutlineNote(outlineNote, this.props.user.email)
-    .then(user => {
-      this.props.dispatch(createOutlineNote(user))
-      localStorage.setItem('user', JSON.stringify(user))
-      this.props.history.push("/")
+    .then(response => {
+      //TODO: address hard-refresh - need to put switch inside container or re-fetch
+
+      // this.props.dispatch(addUserOutline(response))
+      this.props.history.push(`/notebooks/${response.outlineNote.notebook.id}`)
+
     })
   };
 

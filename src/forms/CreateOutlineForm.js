@@ -17,12 +17,16 @@ class CreateOutlineForm extends Component {
       notes: event.target.videoNotes.value,
     }
     fetchCreateOutline(outline, this.props.user.email)
-    .then(response => this.props.dispatch(addUserOutline(response)))
-    .then(response => this.props.history.push(`/outlines/${response.outline.id}`))
+    .then(response => {
+
+      //TODO: address hard-refresh - need to put switch inside container or re-fetch
+        this.props.dispatch(addUserOutline(response))
+
+        // this.props.history.push(`/outlines/${response.outline.id}`)
+    })
   }
 
   render() {
-    console.log(this.props)
     return (
       <Segment>
         <Header>{this.props.video.videoTitle}</Header>

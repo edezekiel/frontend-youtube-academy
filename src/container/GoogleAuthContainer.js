@@ -41,7 +41,7 @@ class GoogleAuthContainer extends Component {
 
   loginUser = (googleUser) => {
     // this will find_or_create user based on googleID
-    // TODO - encode the googleID
+    // TODO - validate the token in Rails
     let transmitUser = {
       email: googleUser.w3.U3,
       name: googleUser.w3.ig,
@@ -60,7 +60,7 @@ class GoogleAuthContainer extends Component {
     .then(res => res.json())
     .then(railsUser => {
       // save response from rails in localStorage
-      localStorage.setItem('user', JSON.stringify(railsUser))
+      localStorage.setItem('user', JSON.stringify({name: railsUser.name, id: railsUser.id, email: railsUser.email, image: railsUser.image}))
       // dispatch response to Redux store
       this.props.dispatch(loginSuccess(railsUser))
       this.props.history.push('/')
