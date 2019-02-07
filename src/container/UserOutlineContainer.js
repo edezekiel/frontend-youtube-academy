@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 
 import Video from "../presentational/Video";
 
-class OutlineContainer extends Component {
+class UserOutlineContainer extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <Container>
         {this.props.outline ?
@@ -44,4 +43,4 @@ let mapStateToProps = ({ user }, ownProps) => {
   return { user, outline };
 };
 
-export default connect(mapStateToProps)(OutlineContainer);
+export default connect(mapStateToProps)(UserOutlineContainer);

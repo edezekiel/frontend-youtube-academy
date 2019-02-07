@@ -4,7 +4,7 @@ import { Container, List } from "semantic-ui-react";
 
 import NotebookLink from "../presentational/NotebookLink";
 
-class NotebooksContainer extends Component {
+class UserNotebooksContainer extends Component {
 
   render() {
     return(
@@ -22,4 +22,4 @@ class NotebooksContainer extends Component {
 let mapStateToProps = ({ user }) => {
   return { user };
 };
-export default connect(mapStateToProps)(NotebooksContainer);
+export default connect(mapStateToProps)(UserNotebooksContainer);

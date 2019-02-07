@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 import { Container, Grid, Header, Button, Segment, Image } from "semantic-ui-react";
 
-import OutlinesContainer from "./OutlinesContainer";
-import NotebooksContainer from "./NotebooksContainer";
+import UserOutlinesContainer from "./UserOutlinesContainer";
+import UserNotebooksContainer from "./UserNotebooksContainer";
 
 class Profile extends Component {
 
@@ -20,12 +20,12 @@ class Profile extends Component {
         <Grid columns={2}>
           <Grid.Column>
             <Header>Your Outlines:</Header>
-              <OutlinesContainer />
+              <UserOutlinesContainer />
             </Grid.Column>
 
           <Grid.Column>
             <Header>Your Notebooks:</Header>
-              <NotebooksContainer />
+              <UserNotebooksContainer />
             <Segment>
               <Link to="/notebooks/create">
                 <Button inverted color="red">

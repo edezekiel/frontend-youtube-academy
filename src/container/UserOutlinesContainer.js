@@ -4,7 +4,7 @@ import { Container, List } from "semantic-ui-react";
 
 import OutlineLink from "../presentational/OutlineLink";
 
-class OutlinesContainer extends Component {
+class UserOutlinesContainer extends Component {
 
   render() {
     return(
@@ -22,4 +22,4 @@ class OutlinesContainer extends Component {
 let mapStateToProps = ({ user }) => {
   return { user };
 };
-export default connect(mapStateToProps)(OutlinesContainer);
+export default connect(mapStateToProps)(UserOutlinesContainer);
