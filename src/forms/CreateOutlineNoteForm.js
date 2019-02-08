@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import fetchCreateOutlineNote from "../utils/fetchCreateOutlineNote";
 import { createOutlineNote } from '../redux/actions'
 import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
+import RAILS_API from '../services/Backend'
 
 class CreateOutlineNoteForm extends Component {
   state = {}
@@ -11,17 +11,27 @@ class CreateOutlineNoteForm extends Component {
 
   submitOutlineNote = (event, selectedNotebook) => {
     event.preventDefault();
-    let outlineNote = {
+    let createOutlineNote = {
+      email: JSON.parse(localStorage.getItem('user')).email,
+      id_token: JSON.parse(localStorage.getItem('user')).id_token,
       outline: this.props.outline.id,
       notebook: selectedNotebook.value,
     };
-    fetchCreateOutlineNote(outlineNote, this.props.user.email)
+
+    fetch(`${RAILS_API}/outline_notes`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(createOutlineNote)
+      })
+    .then(res => res.json())
     .then(response => {
+      console.log(response)
       //TODO: address hard-refresh - need to put switch inside container or re-fetch
 
       // this.props.dispatch(addUserOutline(response))
-      this.props.history.push(`/notebooks/${response.outlineNote.notebook.id}`)
-
+      // this.props.history.push(`/notebooks/${response.outlineNote.notebook.id}`)
     })
   };
 
