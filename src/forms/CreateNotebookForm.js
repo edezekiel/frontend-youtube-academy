@@ -24,8 +24,10 @@ class CreateNotebookForm extends Component {
         body: JSON.stringify(createNote)
       })
     .then(res => res.json())
-    .then(notebook => this.props.dispatch(addUserNotebook(notebook)))
-    //then push?
+    .then(notebook => {
+      this.props.dispatch(addUserNotebook(notebook))
+      this.props.history.push(`/notebooks/${notebook.id}`)
+    })
   };
 
   render() {
