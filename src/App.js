@@ -17,8 +17,11 @@ import CreateOutlineNoteForm from "./forms/CreateOutlineNoteForm";
 
 
 class App extends Component {
-  render(){
+  componentDidMount(){
+    window.onbeforeunload = () => localStorage.clear()
+  }
 
+  render(){
     return (
       <Container>
         <NavBar />
