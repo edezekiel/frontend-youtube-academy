@@ -5,9 +5,8 @@ import { Container, List } from "semantic-ui-react";
 import OutlineLink from "../presentational/OutlineLink";
 
 class UserOutlinesContainer extends Component {
-
   render() {
-    return(
+    return (
       <Container>
         <List divided animated relaxed verticalAlign="middle">
           {this.props.user.outlines.map(outline => (
@@ -15,11 +14,12 @@ class UserOutlinesContainer extends Component {
           ))}
         </List>
       </Container>
-    )
+    );
   }
 }
 
 let mapStateToProps = ({ user }) => {
   return { user };
 };
+
 export default connect(mapStateToProps)(UserOutlinesContainer);
