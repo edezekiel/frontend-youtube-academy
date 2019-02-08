@@ -3,26 +3,34 @@ import { connect } from 'react-redux'
 
 import Video from "../presentational/Video";
 import { withRouter } from 'react-router'
+import RAILS_API from '../services/Backend'
 
-import fetchCreateOutline from '../utils/fetchCreateOutline'
 import { addUserOutline } from '../redux/actions'
 import { Button, Form, Segment, Header } from "semantic-ui-react";
 
 class CreateOutlineForm extends Component {
-  submitOutline = (event, videoId, videoTitle) => {
+  submitOutline = (event) => {
     event.preventDefault()
-    let outline = {
-      videoId: `https://www.youtube.com/watch?v=${videoId}`,
-      videoTitle: videoTitle,
+
+    let createOutline = {
+      email: JSON.parse(localStorage.getItem('user')).email,
+      id_token: JSON.parse(localStorage.getItem('user')).id_token,
+      videoId: `https://www.youtube.com/watch?v=${this.props.video.videoId}`,
+      videoTitle: this.props.video.videoTitle,
       notes: event.target.videoNotes.value,
     }
-    fetchCreateOutline(outline, this.props.user.email)
-    .then(response => {
 
-      //TODO: address hard-refresh - need to put switch inside container or re-fetch
-        this.props.dispatch(addUserOutline(response))
-
-        // this.props.history.push(`/outlines/${response.outline.id}`)
+    fetch(`${RAILS_API}/outlines`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(createOutline)
+    })
+    .then(res => res.json())
+    .then(outline => {
+      this.props.dispatch(addUserOutline(outline))
+      this.props.history.push(`/outlines/${outline.id}`)
     })
   }
 
@@ -31,13 +39,7 @@ class CreateOutlineForm extends Component {
       <Segment>
         <Header>{this.props.video.videoTitle}</Header>
         <Form
-          onSubmit={event =>
-            this.submitOutline(
-              event,
-              this.props.video.videoId,
-              this.props.video.videoTitle,
-            )
-          }
+          onSubmit={e =>this.submitOutline(e)}
         >
           <Form.Field>
             <Video videoId={this.props.video.videoId} />
