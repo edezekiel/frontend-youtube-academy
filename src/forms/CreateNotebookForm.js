@@ -1,30 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Form, Segment, Header } from "semantic-ui-react";
-
-import fetchCreateNotebook from "../utils/fetchCreateNotebook";
+import { Container, Button, Form, Segment, Header } from "semantic-ui-react";
+import RAILS_API from "../services/Backend";
 
 class CreateNotebookForm extends Component {
-  submitNotebook = (event, user) => {
-    event.preventDefault();
-    let notebook = {
+  submitNotebook = (event) => {
+
+    let createNote = {
+      email: JSON.parse(localStorage.getItem('user')).email,
       title: event.target.notebookTitle.value,
-    };
-    fetchCreateNotebook(notebook, user);
+      id_token: JSON.parse(localStorage.getItem('user')).id_token
+    }
+
+    event.preventDefault();
+    fetch(`${RAILS_API}/notebooks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(createNote)
+      })
+    .then(res => res.json());
+    //then push?
   };
 
   render() {
     return (
-      <Segment>
-        <Header>Create Notebook:</Header>
-        <Form onSubmit={event => this.submitNotebook(event, this.props.user)}>
-          <Form.Field name="notebookTitle" label="Title" control="input" />
+      <Container>
+        {this.props.user ?
+          <Segment>
+            <Header>Create Notebook:</Header>
+            <Form onSubmit={e => this.submitNotebook(e)}>
+              <Form.Field name="notebookTitle" label="Title" control="input" />
 
-          <Button inverted color="red" type="submit">
-            Create Notebook
-          </Button>
-        </Form>
-      </Segment>
+              <Button inverted color="red" type="submit">
+                Create Notebook
+              </Button>
+            </Form>
+          </Segment>
+          : null
+        }
+      </Container>
     );
   }
 }

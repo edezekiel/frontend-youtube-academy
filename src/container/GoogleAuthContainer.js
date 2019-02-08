@@ -46,7 +46,6 @@ class GoogleAuthContainer extends Component {
       email: googleUser.w3.U3,
       name: googleUser.w3.ig,
       image: googleUser.w3.Paa,
-      access_token: googleUser.Zi.access_token,
       id_token: googleUser.Zi.id_token
     }
 
@@ -59,15 +58,18 @@ class GoogleAuthContainer extends Component {
     })
     .then(res => res.json())
     .then(railsUser => {
-      // save response from rails in localStorage
-      localStorage.setItem('user', JSON.stringify({name: railsUser.name, id: railsUser.id, email: railsUser.email, image: railsUser.image}))
-      // dispatch response to Redux store
+      // save transmitUser in localStorage
+      // localStorage doesn't need to persist anything in addition to transmitUser object
+      localStorage.setItem('user', JSON.stringify(transmitUser))
+      // rails sends back user with all their associated data
+      // all of this needs to be dispatched to Redux store
+      // TODO: persist railsUser through hard refresh w/out using localStorage
+        // two options: nest switches, or make new fetch on component load
       this.props.dispatch(loginSuccess(railsUser))
       this.props.history.push('/')
       }
     )
   }
-
 
   //---------------------LOGOUT---------------------//
 
@@ -97,4 +99,4 @@ let mapStateToProps = ({user}) => {
   return {user}
 }
 
-export default withRouter(connect(mapStateToProps, null)(GoogleAuthContainer))
+export default withRouter(connect(mapStateToProps)(GoogleAuthContainer))
