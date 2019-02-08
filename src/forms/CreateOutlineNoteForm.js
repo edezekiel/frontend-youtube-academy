@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { createOutlineNote } from '../redux/actions'
+import { addOutlineNote } from '../redux/actions'
 import { Button, Form, Segment, Header, Radio } from "semantic-ui-react";
 import RAILS_API from '../services/Backend'
 
@@ -27,10 +27,9 @@ class CreateOutlineNoteForm extends Component {
       })
     .then(res => res.json())
     .then(response => {
-      console.log(response)
       //TODO: address hard-refresh - need to put switch inside container or re-fetch
 
-      // this.props.dispatch(addUserOutline(response))
+      this.props.dispatch(addOutlineNote(response))
       // this.props.history.push(`/notebooks/${response.outlineNote.notebook.id}`)
     })
   };
