@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { Container, Button, Form, Segment, Header } from "semantic-ui-react";
 import RAILS_API from "../services/Backend";
 
-class CreateNotebookForm extends Component {
-  submitNotebook = (event) => {
+import { addUserNotebook } from '../redux/actions'
 
+
+class CreateNotebookForm extends Component {
+
+  submitNotebook = (event) => {
     let createNote = {
       email: JSON.parse(localStorage.getItem('user')).email,
       title: event.target.notebookTitle.value,
@@ -20,7 +23,8 @@ class CreateNotebookForm extends Component {
         },
         body: JSON.stringify(createNote)
       })
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(notebook => this.props.dispatch(addUserNotebook(notebook)))
     //then push?
   };
 
