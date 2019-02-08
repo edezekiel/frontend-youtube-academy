@@ -10,8 +10,8 @@ export function addUserOutline(outline){
   return { type: 'ADD_USER_OUTLINE', outline: outline}
 }
 
-export function addOutlineNote(notebook){
-  return { type: 'ADD_OUTLINE_NOTE', notebook: notebook}
+export function updateNotebook(notebook){
+  return { type: 'UPDATE_NOTEBOOK', notebook: notebook}
 }
 
 export function loginSuccess(user){
