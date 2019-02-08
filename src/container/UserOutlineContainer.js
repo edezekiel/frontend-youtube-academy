@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Segment, Grid, Header, Container, Button } from "semantic-ui-react";
+import { Segment, Header, Container, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import Video from "../presentational/Video";
