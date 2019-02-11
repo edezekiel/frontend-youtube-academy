@@ -1,3 +1,3 @@
-const RAILS_API = "http://localhost:3000/api/v1"
+const RAILS_API = "https://backend-youtube-academy.herokuapp.com/api/v1"
 
 export default RAILS_API
