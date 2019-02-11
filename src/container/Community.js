@@ -4,7 +4,7 @@ import RAILS_API from '../services/Backend'
 
 class Community extends Component {
   state = {
-    users:
+    users: null
   }
 
   componentDidMount(){
