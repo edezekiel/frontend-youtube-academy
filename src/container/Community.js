@@ -10,8 +10,8 @@ class Community extends Component {
   componentDidMount(){
     fetch(`${RAILS_API}/users`)
     .then(res => res.json())
-    .then(users => this.setState({
-      users: users
+    .then(response => this.setState({
+      users: response
     }))
   }
 
