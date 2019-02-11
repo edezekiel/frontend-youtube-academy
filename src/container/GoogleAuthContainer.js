@@ -18,6 +18,7 @@ class GoogleAuthContainer extends Component {
 
   handleLoginClick = (event) => {
     // sign user in to Google
+    console.log(window.gapi.auth2.getAuthInstance())
     window.gapi.auth2.getAuthInstance().signIn()
     .then(res => res.error ?
       // TODO: display error message to user if login fails
@@ -50,7 +51,7 @@ class GoogleAuthContainer extends Component {
     }
 
     console.log(transmitUser)
-    
+
     fetch(`${RAILS_API}/login`, {
       method: 'POST',
       headers: {
