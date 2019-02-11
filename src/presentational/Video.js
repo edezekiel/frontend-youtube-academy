@@ -1,6 +1,6 @@
 import React from "react";
 
-import YouTubePlayer from "react-player/lib/players/YouTube";
+import YouTubePlayer from "react-player";
 
 const Video = props => {
   return (
