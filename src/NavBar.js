@@ -19,6 +19,10 @@ const NavBar = (props) =>  {
             <Header as='h3'>Profile</Header>
           </Link>
 
+          <Link to="/community" className="item">
+            <Header as='h3'>Community</Header>
+          </Link>
+          
           <Link to="/logout" className="item">
             <Header as='h3'>Logout</Header>
           </Link>
