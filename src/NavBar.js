@@ -7,7 +7,7 @@ import logo from './assets/favicon.png'
 
 const NavBar = (props) =>  {
   return (
-    <Menu>
+    <Menu stackable>
       <Link to="/" className="item">
         <Header as='h3'><Image src={logo} alt="logo"/> YouTube Academy</Header>
       </Link>
@@ -22,7 +22,7 @@ const NavBar = (props) =>  {
           <Link to="/community" className="item">
             <Header as='h3'>Community</Header>
           </Link>
-          
+
           <Link to="/logout" className="item">
             <Header as='h3'>Logout</Header>
           </Link>
