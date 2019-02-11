@@ -25,10 +25,10 @@ class Community extends Component {
           this.state.users.map(user =>
 
             <Segment>
-              <Container>
+              <Segment basic>
                 <Header>{user.name}'s Profile</Header>
                 <Image src={user.image} />
-              </Container>
+              </Segment>
               <Grid columns={2}>
                 <Grid.Column>
                   <Container>
