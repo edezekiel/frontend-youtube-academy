@@ -40,8 +40,8 @@ class GoogleAuthContainer extends Component {
   }
 
   loginUser = (googleUser) => {
-    // this will find_or_create user based on googleID
-    // TODO - validate the token in Rails
+    // client sends id_token to rails for validation
+    // once token is validated, rails will find or create user based on email
     let transmitUser = {
       email: googleUser.w3.U3,
       name: googleUser.w3.ig,
@@ -49,6 +49,8 @@ class GoogleAuthContainer extends Component {
       id_token: googleUser.Zi.id_token
     }
 
+    console.log(transmitUser)
+    
     fetch(`${RAILS_API}/login`, {
       method: 'POST',
       headers: {
