@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react'
 import handleClientLoad from '../utils/handleClientLoad'
 import buildApiRequest from '../utils/buildApiRequest'
 import { addSearchResult } from '../redux/actions'
+import { clearSearchResults } from '../redux/actions'
 
 import SearchForm from '../presentational/SearchForm'
 import CreateOutlineForm from '../forms/CreateOutlineForm'
@@ -20,6 +21,7 @@ class SearchContainer extends Component {
 
   search = (event) => {
     event.preventDefault()
+    this.props.dispatch(clearSearchResults())
     let searchTerm = event.target.searchTerm.value
     let request = buildApiRequest(
       'GET',
